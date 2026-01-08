@@ -1,0 +1,22 @@
+name: ai_filter_humanize
+version: 1.0
+description: >
+  Remove AI fingerprints and add human texture: specificity, imperfection,
+  controlled unpredictability, and subtle sensory detail.
+inputs:
+  required:
+    - chapter_draft
+steps:
+  - Remove generic phrases: "in that moment", "it seemed", "little did he know", etc.
+  - Reduce symmetry and perfect logic in dialogue and actions.
+  - Add small human flaws: hesitation, misreading, irritation, awkward timing.
+  - Insert at most 3 vivid specific details that feel observed, not invented.
+  - Ensure one hard line per ~800-1200 words (punch line).
+output_format:
+  type: text
+  structure:
+    - "Humanized chapter draft"
+    - "List of removed AI tells"
+quality_checks:
+  - "No over-smoothing; keep edges."
+  - "Added details feel physically plausible."

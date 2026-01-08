@@ -1,0 +1,23 @@
+name: line_tightening
+version: 1.0
+description: >
+  Compress prose 10-20% while preserving Watcher voice: remove redundancy,
+  sharpen verbs, improve rhythm, and increase specificity.
+inputs:
+  required:
+    - chapter_draft
+  optional:
+    - compression_target: "10|15|20"
+steps:
+  - Remove redundant modifiers, repeated observations, filler transitions.
+  - Replace weak verbs with strong, specific verbs.
+  - Tighten sentence openings to reduce repetition.
+  - Maintain a rhythm mix: short pressure lines + occasional longer flow.
+output_format:
+  type: text
+  structure:
+    - "Tightened chapter draft"
+    - "Compression notes (bullets)"
+quality_checks:
+  - "Meaning is preserved; clarity improved."
+  - "No voice flattening into generic minimalism."

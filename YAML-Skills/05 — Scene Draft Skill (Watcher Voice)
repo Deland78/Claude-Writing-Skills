@@ -1,0 +1,27 @@
+name: scene_draft_watcher
+version: 1.0
+description: >
+  Draft a single scene in Watcher voice with clear beats, sensory grounding,
+  conflict, turn, and a strong exit hook.
+inputs:
+  required:
+    - scene_card
+  optional:
+    - voice_anchor: "watcher_voice_anchor"
+    - target_word_count
+steps:
+  - Start with sensory grounding + immediate stakes.
+  - Establish POV desire in the first 10% of scene.
+  - Escalate through proximity, power, or urgency.
+  - Insert micro-exposition only when triggered by action/object/memory.
+  - Execute the turn: reversal, discovery, decision, or interruption.
+  - End on propulsion: a threat, question, consequence, or uneasy relief.
+output_format:
+  type: text
+  structure:
+    - "Drafted scene"
+    - "Beat list (1 line each): entry / escalation / turn / exit"
+quality_checks:
+  - "At least 2 sensory details present (sound, texture, light, temperature, smell)."
+  - "Turn changes the state of the story."
+  - "Exit hook forces movement to next scene."

@@ -1,0 +1,27 @@
+name: character_truth_pass
+version: 1.0
+description: >
+  Ensure each major character's actions in the chapter reflect their beliefs,
+  fears, contradictions, and coping strategies.
+inputs:
+  required:
+    - chapter_draft
+    - character_list
+  optional:
+    - character_bible
+steps:
+  - For each major character, identify:
+      desire, fear, lie they tell themselves, protection, weakness.
+  - Scan the chapter for any action/dialogue that contradicts the truth.
+  - Rewrite moments to restore psychological credibility.
+  - Add at least one moment where the character reveals truth indirectly
+    (gesture, avoidance, impulse, mistake).
+output_format:
+  type: markdown
+  structure:
+    - "## Character Truth Audit"
+    - "Character-by-character notes"
+    - "Patched passages (before/after optional)"
+quality_checks:
+  - "No character behaves only to serve plot."
+  - "At least one contradiction is acknowledged or exploited."

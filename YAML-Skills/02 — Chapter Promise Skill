@@ -1,0 +1,34 @@
+name: chapter_promise
+version: 1.0
+description: >
+  Define the chapter's narrative promise and deliverable change: what shifts,
+  what question is raised, what tension escalates, and what payoff arrives.
+inputs:
+  required:
+    - story_context
+    - chapter_number
+  optional:
+    - pov_character
+    - prior_chapter_summary
+    - next_chapter_target
+steps:
+  - Identify the chapter's START state (emotional + situational).
+  - Identify the chapter's END state (what changed, what worsened, what new truth appears).
+  - Write the central dramatic question (CDQ) in one sentence.
+  - Define 2-3 escalating pressures (social, physical, moral, informational).
+  - Define the payoff beat (reveal, reversal, decision, arrival, loss).
+  - Produce a one-paragraph chapter promise statement.
+output_format:
+  type: markdown
+  structure:
+    - "## Chapter Promise"
+    - "Start State:"
+    - "End State:"
+    - "Central Dramatic Question:"
+    - "Escalating Pressures:"
+    - "Payoff Beat:"
+    - "Promise Statement (1 paragraph):"
+quality_checks:
+  - "End state is meaningfully different from start state."
+  - "CDQ is answerable by the chapter end OR deliberately sharpened."
+  - "Pressures escalate (not repetitive)."

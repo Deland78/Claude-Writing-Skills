@@ -1,0 +1,22 @@
+name: dialogue_subtext_pass
+version: 1.0
+description: >
+  Rewrite dialogue to carry power, misalignment, and subtext; reduce exposition
+  and remove 'on-the-nose' emotional labeling.
+inputs:
+  required:
+    - chapter_draft
+steps:
+  - Identify dialogue lines that state exactly what is meant.
+  - Replace direct statements with:
+      deflection, control attempts, threat, bargaining, sarcasm, silence, mishearing.
+  - Ensure each dialogue exchange has an agenda imbalance.
+  - Add micro-interruptions (body movement, environment intrusion).
+output_format:
+  type: text
+  structure:
+    - "Revised chapter draft (dialogue improved)"
+    - "Dialogue notes (bullets)"
+quality_checks:
+  - "No conversation exists only to inform the reader."
+  - "At least one line per major exchange carries double meaning."

@@ -1,0 +1,25 @@
+name: final_polish_watcher
+version: 1.0
+description: >
+  Final editorial pass for Watcher voice: strengthen openings/exits, tighten
+  scene transitions, ensure pacing and tension are sharp.
+inputs:
+  required:
+    - chapter_draft
+  optional:
+    - voice_anchor: "watcher_voice_anchor"
+steps:
+  - Strengthen the first paragraph: sensory hook + immediate stakes.
+  - Ensure every scene transition is motivated (cause -> next effect).
+  - Add or sharpen 1-2 'pressure lines' that punctuate dread.
+  - Remove any remaining exposition blocks.
+  - Ensure ending hook is sharp and unavoidable.
+output_format:
+  type: text
+  structure:
+    - "Final polished chapter"
+    - "Open/Close evaluation (bullets)"
+quality_checks:
+  - "Opening hooks within first 2-3 lines."
+  - "Ending creates forward pull."
+  - "No soft wrap-up unless intentionally bleak."

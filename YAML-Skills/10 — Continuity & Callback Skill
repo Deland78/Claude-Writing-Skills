@@ -1,0 +1,26 @@
+name: continuity_callbacks
+version: 1.0
+description: >
+  Validate continuity (facts, timeline, knowledge states) and add purposeful
+  callbacks/foreshadowing consistent with the book bible.
+inputs:
+  required:
+    - chapter_draft
+    - book_bible_or_notes
+  optional:
+    - prior_chapters_summary
+steps:
+  - Verify timeline, injuries, weather, distances, and character knowledge.
+  - Flag contradictions or unclear cause-effect chains.
+  - Add 1-2 subtle callbacks to earlier motifs/objects.
+  - Add 1 foreshadow beat consistent with the chapter promise.
+output_format:
+  type: markdown
+  structure:
+    - "## Continuity Checks"
+    - "Flags (must fix)"
+    - "Suggested callbacks"
+    - "Revised passage inserts"
+quality_checks:
+  - "No character knows what they haven't learned."
+  - "Foreshadowing is subtle and grounded, not prophecy-like."

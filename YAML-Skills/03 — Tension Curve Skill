@@ -1,0 +1,26 @@
+name: tension_curve
+version: 1.0
+description: >
+  Create a tension map for the chapter: rises, spikes, reliefs, and a final twist/hook.
+inputs:
+  required:
+    - chapter_promise_output
+    - approximate_word_count
+  optional:
+    - number_of_scenes: 3-7
+steps:
+  - Divide chapter into 3-7 segments (scenes or beats).
+  - Assign each segment a tension rating 1-10.
+  - Ensure at least 1 mid-chapter spike and 1 late spike.
+  - Insert one relief pocket (quiet) that increases dread rather than removing it.
+  - Define the final hook: question, reveal, or threat that forces next chapter.
+output_format:
+  type: markdown
+  structure:
+    - "## Tension Map"
+    - "Beat/Scene list with tension scores"
+    - "Relief pocket description"
+    - "Final hook"
+quality_checks:
+  - "Tension rises overall; relief pockets are strategic."
+  - "At least one escalation comes from a human choice, not coincidence."

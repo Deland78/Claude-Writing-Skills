@@ -1,0 +1,48 @@
+name: watcher_voice_anchor
+version: 1.0
+description: >
+  Anchor prose to the "Watcher in the Dark" voice: grounded cinematic realism,
+  tight tension, emotionally restrained characters, vivid but controlled imagery,
+  and exposition embedded through action and sensory detail.
+inputs:
+  required:
+    - text_to_write_or_edit
+  optional:
+    - pov_character
+    - tense: "past"
+    - target_length
+    - tone_intensity: "low|medium|high"
+    - taboo_list: "words/phrases to avoid"
+    - voice_samples: "optional additional samples"
+steps:
+  - Enforce narrative distance: close-third with occasional widened lens; never float.
+  - Open with sensory setting or immediate tension; do not begin with abstract reflection.
+  - Use concrete imagery with one surprising metaphor max per paragraph (e.g., 'rain like static').
+  - Keep sentences mostly lean, mixing short pressure lines with occasional longer flow.
+  - Embed backstory in micro-flashes triggered by action (documents, memories, names).
+  - Maintain emotional restraint: characters rarely label emotions; show through body and choice.
+  - Dialogue stays functional, sharp, and often hostile; avoid witty banter unless earned.
+  - Escalation should occur through small humiliations and sudden physical reversals.
+  - Avoid generic "AI narrator" transitions: no "As they continued..." / "Little did he know..."
+output_format:
+  type: text
+  structure:
+    - "Rewritten/Drafted text in Watcher voice"
+    - "Voice compliance checklist (bullets)"
+quality_checks:
+  - "Every paragraph contains at least one concrete sensory/physical detail."
+  - "No overt emotional labeling unless the POV character would self-label."
+  - "Backstory appears as brief, sharp insertions; never as a block."
+  - "At least one sentence per page is punchy and standalone (pressure line)."
+  - "Dialogue reflects power dynamics; subtext present when stakes are high."
+style_contract:
+  do:
+    - "Start scenes with weather/light/texture + immediate stakes."
+    - "Write tension through social threat and physical proximity."
+    - "Use specific objects (packs, tarps, plastic bags, N95) to ground realism."
+    - "Let exposition hide inside memories or documents the character is handling."
+  dont:
+    - "No lyrical overdescription; no purple prose."
+    - "No meta commentary about storytelling."
+    - "No perfectly logical dialogue; allow jaggedness."
+    - "No convenient coincidences without cost."
