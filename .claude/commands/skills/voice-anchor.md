@@ -11,7 +11,7 @@ Anchor prose to the "Watcher in the Dark" voice: grounded cinematic realism, tig
 
 ### Inputs
 - **Required**: `text_to_write_or_edit`
-- **Optional**: `pov_character`, `tense` (default: "past"), `target_length`, `tone_intensity` (low|medium|high), `taboo_list`, `voice_samples`
+- **Optional**: `pov_character`, `voice_profile_file`, `tense` (default: "past"), `target_length`, `tone_intensity` (low|medium|high), `taboo_list`, `voice_samples`
 
 ### Steps
 1. Enforce narrative distance: close-third with occasional widened lens; never float.

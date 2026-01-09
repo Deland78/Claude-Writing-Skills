@@ -10,7 +10,7 @@ Validate continuity (facts, timeline, knowledge states) and add purposeful callb
 ## Process
 
 ### Inputs
-- **Required**: `chapter_draft`, `book_bible_or_notes`
+- **Required**: `chapter_draft`, `book_bible_or_notes`, `scene_tracker`
 - **Optional**: `prior_chapters_summary`
 
 ### Steps
@@ -18,6 +18,7 @@ Validate continuity (facts, timeline, knowledge states) and add purposeful callb
 2. Flag contradictions or unclear cause-effect chains.
 3. Add 1-2 subtle callbacks to earlier motifs/objects.
 4. Add 1 foreshadow beat consistent with the chapter promise.
+5. Update scene_tracker with any knowledge/object/relationship changes from this chapter.
 
 ## Output Format
 ## Continuity Checks

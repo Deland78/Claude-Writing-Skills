@@ -26,3 +26,12 @@ Remove AI fingerprints and add human texture: specificity, imperfection, control
 ## Quality Checks
 - No over-smoothing; keep edges.
 - Added details feel physically plausible.
+- [ ] Zero instances of forbidden words or phrases.
+
+## Forbidden Vocabulary
+
+### Words
+delve, multifaceted, navigate, foster, embark, journey, landscape, testament, unwavering, intricate, beacon, realm, pivotal, nuance, crucial, indispensable, comprehensive, furthermore, consequently, hence, vital, commendable, meticulous, endeavor, profound, intriguing, leverage, facet, compelling, cohesive, streamline, enhance
+
+### Phrases
+"little did * know", "as * continued", "in this moment", "in this day and age", "a testament to", "it's important to note", "is not just *, it's", "the * tapestry of", "nestled in", "a symphony of", "dance of", "serves as a"

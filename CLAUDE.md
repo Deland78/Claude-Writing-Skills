@@ -1,55 +1,36 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# Fiction Writing Skills System - Project Guide
 
 ## Repository Overview
+This repository contains the Fiction Writing Skills System, a Claude Code skill set for producing research-informed, high-quality fiction.
 
-This is a **product documentation repository** for the Fiction Writing Skills System - a Claude Code skill/agent system that helps fiction writers produce consistent, craft-informed scenes. The repository contains planning documents, PRDs, and implementation specifications - **not code**.
+## Core Principles
+1. **Story Grid Alignment**: Every scene must follow the Five Commandments and have a clear value shift.
+2. **Character Voice**: All prose is filtered through a character-specific Voice Profile.
+3. **Anti-AI Prose**: Strict enforcement of forbidden vocabulary and human-like sentence variation.
+4. **World Consistency**: Hard constraints and scene tracking prevent continuity errors.
 
-## Document Structure
+## Key Directories
+- `templates/`: Foundational templates for Bible, Characters, World, and Tracking.
+- `bible/`: Active story reference documents (Bible, World Rules, Scene Tracker).
+- `characters/`: Detailed character profiles with Voice Profiles.
+- `.claude/commands/skills/`: Individual skill definitions.
 
-| Document | Purpose |
-|----------|---------|
-| `01_PRODUCT_ROADMAP.md` | Three-phase roadmap: research foundation, features by phase, success criteria |
-| `02_PHASE1_PRDs.md` | Detailed requirements for Phase 1 MVP (Story Bible Schema, Scene Architect, Scene Draft, Character Truth, Pipeline Runner) |
-| `03_IMPLEMENTATION_GUIDE.md` | Technical specs including file structures, command definitions, YAML skill definitions, and templates |
+## Primary Commands
+- `/project:pipeline-run {scene_path}`: Orchestrate the full 3-stage pipeline.
+- `/project:skills:voice-anchor`: Set or verify the narrative voice.
+- `/project:skills:scene-architect`: Plan scenes with Story Grid structure.
+- `/project:skills:scene-draft`: Generate prose with voice/rule enforcement.
 
-## Core Concepts
+## Foundation Setup
+Before drafting, ensure these are populated:
+1. `bible/story-bible.md` (from `templates/story-bible.template.md`)
+2. `bible/world-rules.md` (from `templates/world-rules.template.md`)
+3. `bible/scene-tracker.md` (from `templates/scene-tracker.template.md`)
+4. `characters/{name}.md` (from `templates/character-profile.template.md`)
 
-### Story Grid Five Commandments
-Every scene blueprint must contain:
-1. **Inciting Incident** (causal or coincidental)
-2. **Progressive Complications** with a turning point
-3. **Crisis** (Best Bad Choice or Irreconcilable Goods)
-4. **Climax** (choice + action)
-5. **Resolution** with value shift
-
-### Anti-AI Prose Requirements
-Drafts must avoid: delve, multifaceted, navigate, foster, embark, journey, landscape, testament, unwavering, intricate, beacon, realm, pivotal, nuance, crucial, indispensable, comprehensive, furthermore, consequently, hence, vital
-
-Drafts must include: varied sentence lengths, 2+ non-visual sensory details, specific concrete details
-
-## Phase 1 Skills (Specified)
-
-- **Scene Architect**: `outline.md` → `blueprint.md` (Story Grid structure)
-- **Scene Draft**: `blueprint.md` → `draft.md` (prose with voice/world enforcement)
-- **Character Truth**: `draft.md` → `audit.md` (consistency checks)
-- **Pipeline Runner**: Orchestrates all three with review pauses
-
-## Target Directory Structure (for implementation)
-
-```
-{project}/
-├── .claude/commands/skills/     # Skill command definitions
-├── bible/                       # story-bible.md, world-rules.md, scene-tracker.md
-├── characters/                  # {name}.md profiles
-├── chapters/ch{XX}/scene-{XX}/  # outline.md, blueprint.md, draft.md, audit.md
-└── templates/                   # Template files for bible/characters
-```
-
-## When Working With These Documents
-
-- Phase 1 is fully specified and ready for implementation
-- Phases 2-3 are placeholders awaiting Phase 1 feedback
-- The `03_IMPLEMENTATION_GUIDE.md` contains copy-pasteable file contents for building the actual system
-- YAML skill definitions in the implementation guide define inputs, context loading, validation rules, and anti-AI patterns
+## Writing Checklist
+- [ ] POV character's internal voice matches their profile
+- [ ] No forbidden vocabulary (delve, multifaceted, etc.)
+- [ ] At least 2 non-visual sensory details per scene
+- [ ] Scene has a Crisis (Best Bad Choice or Irreconcilable Goods)
+- [ ] Value shift is achieved and logical

@@ -28,6 +28,15 @@ Convert chapter promise + tension map into structured scene cards with goal, obs
     goal:
     obstacle:
     tactic:
+    # Five Commandments
+    inciting_incident:
+    progressive_complication:
+    crisis_type: best_bad_choice | irreconcilable_goods
+    crisis_question:
+    climax_action:
+    resolution:
+    value_shift: [from] -> [to]
+    # Original progression
     turn:
     cost:
     exit_emotion:
