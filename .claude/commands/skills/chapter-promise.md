@@ -4,13 +4,13 @@ Define the chapter's narrative promise and deliverable change: what shifts, what
 
 ## Usage
 ```
-/project:skills:chapter-promise {story_context} {chapter_number}
+/project:skills:chapter-promise {story_promise} {story_context} {chapter_number}
 ```
 
 ## Process
 
 ### Inputs
-- **Required**: `story_context`, `chapter_number`
+- **Required**: `story_promise`, `story_context`, `chapter_number`
 - **Optional**: `pov_character`, `prior_chapter_summary`, `next_chapter_target`
 
 ### Steps
@@ -34,3 +34,4 @@ Define the chapter's narrative promise and deliverable change: what shifts, what
 - End state is meaningfully different from start state.
 - CDQ is answerable by the chapter end OR deliberately sharpened.
 - Pressures escalate (not repetitive).
+- End state moves story narrative forward sharpening the central question or conflict or stakes of the story_promise.
