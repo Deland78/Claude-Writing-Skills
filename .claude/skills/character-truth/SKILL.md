@@ -1,3 +1,8 @@
+---
+name: Character Truth
+description: Ensure each major character's actions reflect their beliefs, fears, contradictions, and coping strategies.
+---
+
 # Character Truth Skill
 
 Ensure each major character's actions in the chapter reflect their beliefs, fears, contradictions, and coping strategies.

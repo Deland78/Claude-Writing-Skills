@@ -1,3 +1,8 @@
+---
+name: AI Filter Humanize
+description: Remove AI fingerprints and add human texture - specificity, imperfection, controlled unpredictability, and subtle sensory detail.
+---
+
 # AI Filter Humanize Skill
 
 Remove AI fingerprints and add human texture: specificity, imperfection, controlled unpredictability, and subtle sensory detail.

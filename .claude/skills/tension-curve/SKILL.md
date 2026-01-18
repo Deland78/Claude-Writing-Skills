@@ -1,3 +1,8 @@
+---
+name: Tension Curve
+description: Map the micro-tension beats within a chapter to ensure escalation, release, and sustained dread or anticipation.
+---
+
 # Tension Curve Skill
 
 Map the micro-tension beats within a chapter to ensure escalation, release, and sustained dread or anticipation.

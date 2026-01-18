@@ -1,3 +1,8 @@
+---
+name: Scene Draft
+description: Draft a single scene in Watcher voice with clear beats, sensory grounding, conflict, turn, and a strong exit hook.
+---
+
 # Scene Draft Skill
 
 Draft a single scene in Watcher voice with clear beats, sensory grounding, conflict, turn, and a strong exit hook.

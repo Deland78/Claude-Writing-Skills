@@ -1,3 +1,8 @@
+---
+name: Scene Architect
+description: Convert chapter promise + tension map into structured scene cards with goal, obstacle, turn, cost, and exit hook.
+---
+
 # Scene Architect Skill
 
 Convert chapter promise + tension map into structured scene cards with goal, obstacle, turn, cost, and exit hook.

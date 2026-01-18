@@ -1,3 +1,8 @@
+---
+name: Voice Anchor
+description: Anchor prose & voice with grounded cinematic realism, tight tension, emotionally restrained characters, vivid but controlled imagery, and exposition embedded through action and sensory detail.
+---
+
 # Voice Anchor Skill
 
 Anchor prose & voice: grounded cinematic realism, tight tension, emotionally restrained characters, vivid but controlled imagery, and exposition embedded through action and sensory detail.

@@ -1,3 +1,8 @@
+---
+name: Line Tightening
+description: Compress prose 10-20% while preserving Watcher voice - remove redundancy, sharpen verbs, improve rhythm, and increase specificity.
+---
+
 # Line Tightening Skill
 
 Compress prose 10-20% while preserving Watcher voice: remove redundancy, sharpen verbs, improve rhythm, and increase specificity.

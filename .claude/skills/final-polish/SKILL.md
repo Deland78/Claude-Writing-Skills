@@ -1,3 +1,8 @@
+---
+name: Final Polish
+description: Final editorial pass for Watcher voice - strengthen openings/exits, tighten scene transitions, ensure pacing and tension are sharp.
+---
+
 # Final Polish Skill
 
 Final editorial pass for Watcher voice: strengthen openings/exits, tighten scene transitions, ensure pacing and tension are sharp.

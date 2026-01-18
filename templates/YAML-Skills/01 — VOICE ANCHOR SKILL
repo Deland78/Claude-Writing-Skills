@@ -1,0 +1,47 @@
+name: watcher_voice_anchor
+version: 1.0
+description: >
+  Anchor prose & voice: grounded cinematic realism,
+  tight tension, emotionally restrained characters, vivid but controlled imagery,
+  and exposition embedded through action and sensory detail.
+inputs:
+  required:
+    - text_to_write_or_edit
+  optional:
+    - pov_character
+    - tense: "past"
+    - target_length: "1-2 pages not counting dialogue"
+    - tone_intensity: "low|medium|high"
+    - taboo_list: "cliches, sexual innuendo, gratuitous profanities, never curse using God or Jesus or Christ"
+    - voice_samples: "optional additional samples"
+steps:
+  - Enforce narrative distance: close-third with occasional widened lens; never float.
+  - Open with sensory setting or immediate tension; quickly get to inciting incident; do not begin with abstract reflection.
+  - Use concrete imagery with one surprising metaphor max per paragraph (e.g., 'rain like static').
+  - Keep sentences mostly lean, mixing short pressure lines with occasional longer flow.
+  - Embed backstory in micro-flashes, physical reactions like flinching, forced laugh, touching a scar, reacting to phantom physical pain - triggered by action, objects, memories, places).
+  - Maintain emotional restraint: characters rarely label emotions; show through body and choice.
+  - Dialogue stays functional, sharp, and sometimes antagonistic/hostile, curious, empathetic, caring depending on character relationships, greatest fear or desire and fitting the situationsl; avoid witty banter unless earned.
+  - Escalation should occur through small conflicts, small humiliations, increased stakes, and sudden physical reversals.
+  - Avoid generic "AI narrator" descriptions, dialogue, and transitions: no "As they continued..." / "Little did he know..."
+output_format:
+  type: text
+  structure:
+    - "Voice compliance checklist (bullets)"
+quality_checks:
+  - "Every paragraph contains at least one concrete sensory/physical detail."
+  - "No overt emotional labeling unless the POV character would self-label."
+  - "Backstory appears as brief, sharp insertions; never as a block."
+  - "At least one or two sentence per page is punchy and standalone (pressure line)."
+  - "Dialogue reflects power dynamics, character inner emotions rooted in character traits; subtext present when stakes are high."
+style_contract:
+  do:
+    - "Start scenes with inciting incident + immediate stakes (emotional, relational or physical tied to characters' greatest desire or weakness or fear). Or get to those quickly.
+    - "Write rising tension through social threat, physical proximity, revelation of character's long kept secret that makes them vulnerable"
+    - "Use specific objects (packs, tarps, plastic bags, N95) to ground realism."
+    - "Let exposition hide in actions, emotions, memories, setting, significant objects."
+  dont:
+    - "No lyrical overdescription; no purple prose."
+    - "No meta commentary about storytelling."
+    - "No perfectly logical dialogue; allow jaggedness."
+    - "No convenient coincidences without cost."

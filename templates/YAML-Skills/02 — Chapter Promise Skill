@@ -5,6 +5,7 @@ description: >
   what question is raised, what tension escalates, and what payoff arrives.
 inputs:
   required:
+    - story_promise
     - story_context
     - chapter_number
   optional:
@@ -32,3 +33,4 @@ quality_checks:
   - "End state is meaningfully different from start state."
   - "CDQ is answerable by the chapter end OR deliberately sharpened."
   - "Pressures escalate (not repetitive)."
+  - "End state moves story narrative forward sharpening the central question or conflict or stakes of the story_promise."

@@ -1,3 +1,8 @@
+---
+name: Dialogue Subtext
+description: Rewrite dialogue to carry power, misalignment, and subtext; reduce exposition and remove on-the-nose emotional labeling.
+---
+
 # Dialogue Subtext Skill
 
 Rewrite dialogue to carry power, misalignment, and subtext; reduce exposition and remove 'on-the-nose' emotional labeling.

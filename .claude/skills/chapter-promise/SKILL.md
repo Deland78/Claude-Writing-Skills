@@ -1,3 +1,8 @@
+---
+name: Chapter Promise
+description: Define the chapter's narrative promise and deliverable change - what shifts, what question is raised, what tension escalates, and what payoff arrives.
+---
+
 # Chapter Promise Skill
 
 Define the chapter's narrative promise and deliverable change: what shifts, what question is raised, what tension escalates, and what payoff arrives.

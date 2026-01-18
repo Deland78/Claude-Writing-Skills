@@ -1,3 +1,8 @@
+---
+name: Story Promise
+description: Define the story's narrative promise - the implicit contract made with readers about what kind of story this will be, what central question drives it, and what stakes will be resolved by the end.
+---
+
 # Story Promise Skill
 
 Define the story's narrative promise: the implicit contract made with readers in the opening pages about what kind of story this will be, what central question drives it, and what stakes will be resolved by the end.

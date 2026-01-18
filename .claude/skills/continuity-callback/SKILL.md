@@ -1,3 +1,8 @@
+---
+name: Continuity & Callback
+description: Validate continuity (facts, timeline, knowledge states) and add purposeful callbacks/foreshadowing consistent with the book bible.
+---
+
 # Continuity & Callback Skill
 
 Validate continuity (facts, timeline, knowledge states) and add purposeful callbacks/foreshadowing consistent with the book bible.

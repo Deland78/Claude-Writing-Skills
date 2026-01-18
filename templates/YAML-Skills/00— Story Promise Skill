@@ -1,0 +1,57 @@
+name: story_promise
+version: 1.0
+description: >
+  Define the story's narrative promise: the implicit contract made with readers
+  in the opening pages about what kind of story this will be, what central 
+  question drives it, and what stakes will be resolved by the end.
+
+inputs:
+  required:
+    - story_concept
+    - genre
+    - opening_situation
+  optional:
+    - protagonist_name
+    - inciting_incident
+    - target_length
+
+steps:
+  - Identify what kind of story this is (genre, tone, emotional experience promised).
+  - Define the central question or conflict that will drive the narrative.
+  - Specify the stakes that must be resolved by story's end.
+  - Verify the promise can be established in the first 10-15% of the story.
+  - Produce a one-paragraph story promise statement.
+
+output_format:
+  type: markdown
+  structure:
+    - "## Story Promise"
+    - "Story Type (Genre/Tone/Experience):"
+    - "Central Question or Conflict:"
+    - "Stakes to be Resolved:"
+    - "Promise Statement (1 paragraph):"
+    - ""
+    - "### Reference Example: The Lord of the Rings"
+    - "**Promise Made:** Gandalf reveals Bilbo's ring is the One Ring of Sauron,"
+    - "and it must be destroyed in Mount Doom or Sauron will enslave all of"
+    - "Middle-earth. Promise: an epic quest to save the world by destroying"
+    - "ultimate power rather than wielding it."
+    - ""
+    - "**Promise Fulfilled:** Frodo and Sam reach Mount Doom against impossible"
+    - "odds. Though Frodo fails at the final moment (claimed by the Ring),"
+    - "Gollum's intervention destroys it anyway. Sauron falls, the age of magic"
+    - "ends, and hobbits return home changed. The eucatastrophic ending delivers"
+    - "on both the quest's success and the bittersweet cost."
+
+quality_checks:
+  - "Story type matches actual content and establishes clear expectations."
+  - "Central question is compelling and specific (not generic)."
+  - "Stakes are clear, meaningful, and will drive reader investment."
+  - "Promise can be credibly kept by the story's planned ending."
+  - "Opening pages (first 10-15%) will clearly communicate this promise."
+
+usage_notes:
+  - "The promise must be kept. Readers feel cheated if the opening teaches"
+  - "them to expect one kind of story but delivers another."
+  - "Examples: Thriller with ticking bomb → promises tension and race against time."
+  - "Mystery with murdered body → promises killer will be revealed."
