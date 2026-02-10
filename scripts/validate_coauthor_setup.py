@@ -87,12 +87,14 @@ def main() -> int:
 
     failures = 0
     for result in checks:
-        print(result.message)
-        if not result.ok:
+        if result.ok:
+            print(result.message)
+        else:
+            print(result.message, file=sys.stderr)
             failures += 1
 
     if failures:
-        print(f"\nValidation failed with {failures} issue(s).")
+        print(f"\nValidation failed with {failures} issue(s).", file=sys.stderr)
         return 1
 
     print("\nValidation passed.")
