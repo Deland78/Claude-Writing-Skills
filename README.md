@@ -7,6 +7,9 @@
 | [01_PRODUCT_ROADMAP.md](01_PRODUCT_ROADMAP.md) | Three-phase roadmap with research foundation, features, success criteria, and feedback touchpoints | Complete |
 | [02_PHASE1_PRDs.md](02_PHASE1_PRDs.md) | Detailed Product Requirements Documents for all Phase 1 MVP features | Complete |
 | [03_IMPLEMENTATION_GUIDE.md](03_IMPLEMENTATION_GUIDE.md) | Technical implementation guide for Claude Code, including file structures, command definitions, and templates | Complete |
+| [05_AI_COAUTHOR_PLAN.md](05_AI_COAUTHOR_PLAN.md) | Opinionated AI co-author architecture for SF-thriller / SF-philosophical writing with style modeling and diagnostics | Complete |
+| [06_COAUTHOR_EXECUTION_RUNBOOK.md](06_COAUTHOR_EXECUTION_RUNBOOK.md) | Operational runbook for canon setup and deterministic validation | Complete |
+| [07_COAUTHOR_SYSTEM_DESIGN.md](07_COAUTHOR_SYSTEM_DESIGN.md) | Detailed system design with architecture and end-to-end flow diagram | Complete |
 
 ---
 
@@ -155,6 +158,8 @@ Orchestrate skills with pause-for-review between stages
 1. Read [01_PRODUCT_ROADMAP.md](01_PRODUCT_ROADMAP.md) for full context
 2. Review [02_PHASE1_PRDs.md](02_PHASE1_PRDs.md) for detailed requirements
 3. Use [03_IMPLEMENTATION_GUIDE.md](03_IMPLEMENTATION_GUIDE.md) to build the system
+4. Review [05_AI_COAUTHOR_PLAN.md](05_AI_COAUTHOR_PLAN.md) for the opinionated co-author architecture
+5. Run [06_COAUTHOR_EXECUTION_RUNBOOK.md](06_COAUTHOR_EXECUTION_RUNBOOK.md) and validate setup with `python scripts/validate_coauthor_setup.py --root .`
 
 ---
 
