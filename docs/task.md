@@ -1,0 +1,57 @@
+# Task: Unified Fiction Writing Pipeline
+
+## Design Phase (Discussion with User)
+- [x] Evaluate post-PR merge state (walkthrough.md)
+- [x] Map hierarchical workflow gaps (hierarchical_gap_analysis.md)
+- [x] Design human-in-the-loop interaction model (human_in_the_loop_design.md)
+- [x] Design context management + continuity agent + model routing (context_continuity_models.md)
+- [x] Evaluate entity-relationship matrix + platform choice (matrix_eval_platform.md)
+- [x] Confirm decisions: YAML relationships, Claude Code CLI, Antigravity for editing
+- [x] Respond to first architecture review (5 findings)
+- [x] Respond to second architecture review (10 findings)
+- [/] Consolidate into unified implementation plan
+- [ ] User review of implementation plan
+
+## Implementation (After Plan Approval)
+- [ ] Phase 0: Foundation
+  - [ ] I/O contract schemas (C1)
+  - [ ] YAML entity-relationship schema with controlled vocabulary + temporal fields (C3)
+  - [ ] Migration script with dry-run/rollback (M3)
+  - [ ] Canon directory restructure (merge bible/ → canon/)
+  - [ ] Pipeline-state manifest with canon versioning (C2) + reproducibility (M1)
+  - [ ] Context loader + start_step wrapper scripts
+  - [ ] Update all skills to reference canon/ paths
+- [ ] Phase 1: New Skills (Levels 1-3)
+  - [ ] story-concept skill + template
+  - [ ] story-arc-builder skill + template
+  - [ ] act-outline skill + template
+- [ ] Phase 2A: Simulated MOE (MVP)
+  - [ ] Agent role definitions (system prompts)
+  - [ ] Lead Editor role-switching protocol
+  - [ ] Mob termination governance (C5)
+  - [ ] Citation enforcement rule (M5)
+- [ ] Phase 2B: Real Orchestrator (when evals justify)
+  - [ ] Python orchestrator script
+  - [ ] Separate API calls per agent
+  - [ ] Canon write concurrency / optimistic locking (C2)
+- [ ] Phase 3: Continuity Agent Sidecar
+  - [ ] Entity extraction from artifacts
+  - [ ] YAML relationship search/query tools
+  - [ ] Continuity report format
+  - [ ] Auto-trigger on AI changes, manual on human changes
+- [ ] Phase 4: Pipeline Integration
+  - [ ] Updated pipeline-run.md with Stage 0
+  - [ ] Grid navigation (horizontal/vertical/jump)
+  - [ ] Session boundary + manifest handoff
+  - [ ] Cascade awareness for upstream revisions
+- [ ] Cross-Cutting: Tracing & Evals
+  - [ ] Trace output format (.trace.md with HUMAN-EVAL templates)
+  - [ ] Trace generation integrated into orchestrator
+  - [ ] Eval aggregation script
+  - [ ] Model upgrade decision rule
+  - [ ] LLM-as-judge (future, after 20-30 human-labeled traces)
+- [ ] Cross-Cutting: Model Strategy
+  - [ ] All agents start on Haiku/Flash
+  - [ ] Per-agent model config in pipeline-state.yaml
+  - [ ] Provider abstraction layer (Claude API / OpenRouter API)
+  - [ ] OpenRouter comparison after Claude baseline

@@ -1,0 +1,386 @@
+# Phase 0: Foundation — Detailed Plan
+
+## Build Order & Dependencies
+
+```mermaid
+flowchart TD
+    S1["S0.1: I/O Contract Schemas"]
+    S2["S0.2: Relationships Schema + Query Tool"]
+    S3["S0.3: Migration Script"]
+    S4["S0.4: Canon Restructure (execute migration)"]
+    S5["S0.5: Pipeline State + Context Loader + start_step"]
+    S6["S0.6: Skill Path Updates + Validation"]
+
+    S1 --> S2
+    S1 --> S5
+    S2 --> S3
+    S3 --> S4
+    S4 --> S6
+    S5 --> S6
+```
+
+**Critical path**: S0.1 → S0.2 → S0.3 → S0.4 → S0.6
+
+---
+
+## S0.1: I/O Contract Schemas
+
+**Goal**: Define the data contracts that every downstream component validates against. This is the foundation everything else uses.
+
+### Files to Create
+
+| File | Purpose |
+|------|---------|
+| [NEW] `schemas/node_input.schema.yaml` | What goes into a skill/agent call |
+| [NEW] `schemas/agent_comment.schema.yaml` | What an agent returns |
+| [NEW] `schemas/continuity_report.schema.yaml` | What the continuity agent returns |
+| [NEW] `schemas/commit_patch.schema.yaml` | What gets committed to canon |
+| [NEW] `schemas/trace_record.schema.yaml` | Complete session record |
+| [NEW] `schemas/relationships.schema.yaml` | Entity + relationship validation |
+| [NEW] `schemas/pipeline_state.schema.yaml` | Pipeline state file validation |
+| [NEW] `scripts/schema_validator.py` | Shared validation utility |
+| [NEW] `tests/test_schemas.py` | TDD: tests written first |
+
+### TDD Approach
+
+**Write tests first**, then schemas, then validator:
+
+```python
+# tests/test_schemas.py
+
+def test_valid_agent_comment_passes():
+    """A correctly formed agent comment should pass validation."""
+    comment = {
+        "agent": "plot_analyst",
+        "model": "claude-haiku",
+        "comment": "Ch3 feels like a stall — no value shift.",
+        "citations": ["canon/acts/act-1/ch3-outline.md#L12"],
+        "suggested_changes": [],
+        "resolution": None  # not yet resolved
+    }
+    assert validate("agent_comment", comment).ok
+
+def test_agent_comment_missing_citations_fails():
+    """Comments without citations list should fail."""
+    comment = {"agent": "plot_analyst", "comment": "Something vague"}
+    result = validate("agent_comment", comment)
+    assert not result.ok
+    assert "citations" in result.errors[0]
+
+def test_relationship_entry_bad_vocabulary_fails():
+    """Rel terms not in controlled vocabulary should fail."""
+    rel = {"from": "marcus", "to": "elena", "rel": "is_suspicious_of", ...}
+    result = validate("relationships", {"relationships": [rel]})
+    assert not result.ok
+    assert "vocabulary" in result.errors[0]
+
+def test_valid_commit_patch_requires_citation():
+    """Canon mutations must have citation chains (M5)."""
+    patch = {
+        "canon_changes": [{"file": "canon/acts/act-1-outline.md", "action": "update"}],
+        "relationship_changes": [{"id": "rel_001", "field": "valid_to", "new_value": "Act2/Ch1"}],
+        "citations": []  # empty!
+    }
+    result = validate("commit_patch", patch)
+    assert not result.ok
+    assert "citation" in result.errors[0]
+```
+
+### Pass Criteria
+- `pytest tests/test_schemas.py` — all tests pass
+- Every schema can validate a correct example and reject a malformed one
+- `python scripts/schema_validator.py schemas/agent_comment.schema.yaml examples/valid_comment.yaml` exits 0
+- `python scripts/schema_validator.py schemas/agent_comment.schema.yaml examples/bad_comment.yaml` exits 1 with actionable error
+
+---
+
+## S0.2: Relationships Schema + Query Tool
+
+**Goal**: Build the entity-relationship YAML format and the query/mutation tool. TDD is high-value here because this is the core data structure.
+
+### Files to Create
+
+| File | Purpose |
+|------|---------|
+| [NEW] `canon/relationships.yaml` | Empty scaffold with vocabulary + example entity |
+| [MODIFY] `schemas/relationships.schema.yaml` | Already planned in S0.1, built here in detail |
+| [NEW] `scripts/relationship_query.py` | CLI tool: query, add, validate, render_matrix |
+| [NEW] `tests/test_relationships.py` | TDD: tests first |
+| [NEW] `tests/fixtures/sample_relationships.yaml` | Test fixture (LOTR example from current matrix) |
+
+### TDD Approach
+
+```python
+# tests/test_relationships.py
+
+def test_query_by_entity_returns_all_aliases():
+    """Querying 'marcus' should also return results for 'the soldier'."""
+    rels = load_fixture("sample_relationships.yaml")
+    results = query(rels, entity="marcus")
+    assert any(r["from"] == "marcus" for r in results)
+    # Also found via alias search in text
+
+def test_add_rejects_unknown_rel_vocabulary():
+    """Cannot add a relationship with rel='is_suspicious_of' (not in vocab)."""
+    with pytest.raises(VocabularyError):
+        add(rels, from_e="marcus", to_e="elena", rel="is_suspicious_of", ...)
+
+def test_add_valid_relationship():
+    """Adding a valid relationship appends and preserves existing."""
+    before_count = len(rels["relationships"])
+    add(rels, from_e="marcus", to_e="zone_3", rel="fears",
+        context="first encounter", valid_from="Act1/Ch2",
+        confidence="medium", source="canon/acts/act-1/ch2-outline.md#L5")
+    assert len(rels["relationships"]) == before_count + 1
+
+def test_query_as_of_filters_temporally():
+    """Querying as_of='Act1/Ch3' should not return relationships from Act2."""
+    results = query(rels, entity="marcus", as_of="Act1/Ch3")
+    assert all(r["valid_from"] <= "Act1/Ch3" for r in results)
+
+def test_validate_catches_broken_supersession():
+    """If rel_002 says supersedes: rel_001, but rel_001 has no superseded_by."""
+    result = validate_relationships(broken_fixture)
+    assert not result.ok
+    assert "supersession" in result.errors[0]
+
+def test_render_matrix_produces_markdown():
+    """render_matrix should output a valid markdown table."""
+    md = render_matrix(rels, as_of="Act1/Ch5")
+    assert "| From" in md
+    assert "marcus" in md.lower()
+
+def test_validate_strict_gate():
+    """--validate should catch all schema violations."""
+    # Run as CLI
+    result = subprocess.run(
+        ["python", "scripts/relationship_query.py", "--validate",
+         "--file", "tests/fixtures/bad_relationships.yaml"],
+        capture_output=True)
+    assert result.returncode != 0
+```
+
+### Pass Criteria
+- `pytest tests/test_relationships.py` — all tests pass
+- `python scripts/relationship_query.py --validate --file canon/relationships.yaml` exits 0
+- `python scripts/relationship_query.py query --entity marcus --file canon/relationships.yaml` returns results
+- `python scripts/relationship_query.py render-matrix --file canon/relationships.yaml` outputs readable markdown
+
+---
+
+## S0.3: Migration Script
+
+**Goal**: Safe, reversible migration of `bible/` → `canon/world/` with ref updates.
+
+### Current State (What Exists)
+
+| Source | Destination | Action |
+|--------|------------|--------|
+| `bible/story-bible.md` (1475 bytes) | `canon/world/story-bible.md` | Move (replace existing README.md) |
+| `bible/world-rules.md` (334 bytes) | `canon/world/world-rules.md` | Move |
+| `bible/scene-tracker.md` (674 bytes) | `canon/timeline.md` | Merge with existing stub (90 bytes) |
+| `canon/Entity-relationship-matrix.md` | Delete (replaced by `relationships.yaml`) | Archive content in test fixture |
+| `CLAUDE.md` lines 14, 26-28 | Update `bible/` → `canon/` refs | In-place update |
+| Skills referencing "bible" | Update to "canon" | 3 skills: `continuity-callback`, `scene-draft`, `character-truth` |
+
+### Files to Create
+
+| File | Purpose |
+|------|---------|
+| [NEW] `scripts/migrate_bible_to_canon.py` | Migration with --dry-run, --execute, --rollback, --verify |
+| [NEW] `tests/test_migration.py` | TDD: tests on temp directory copies |
+
+### TDD Approach
+
+```python
+# tests/test_migration.py
+
+def test_dry_run_produces_mapping_report(tmp_path):
+    """--dry-run should list all planned moves without touching files."""
+    create_test_repo(tmp_path)
+    report = run_migration(tmp_path, dry_run=True)
+    assert "bible/story-bible.md → canon/world/story-bible.md" in report
+    assert (tmp_path / "bible" / "story-bible.md").exists()  # NOT moved
+
+def test_execute_moves_files(tmp_path):
+    """--execute should move files and update refs."""
+    create_test_repo(tmp_path)
+    run_migration(tmp_path, execute=True)
+    assert (tmp_path / "canon" / "world" / "story-bible.md").exists()
+    assert not (tmp_path / "bible" / "story-bible.md").exists()
+
+def test_rollback_reverts(tmp_path):
+    """--rollback should restore bible/ from rollback file."""
+    create_test_repo(tmp_path)
+    run_migration(tmp_path, execute=True)
+    run_migration(tmp_path, rollback=True)
+    assert (tmp_path / "bible" / "story-bible.md").exists()
+
+def test_verify_catches_broken_refs(tmp_path):
+    """--verify should fail if skills still reference bible/."""
+    create_test_repo(tmp_path)
+    run_migration(tmp_path, execute=True)
+    # Manually break a ref
+    skill = tmp_path / ".claude" / "skills" / "continuity-callback" / "SKILL.md"
+    skill.write_text(skill.read_text().replace("canon", "bible"))
+    result = run_migration(tmp_path, verify=True)
+    assert not result.ok
+
+def test_scene_tracker_merge():
+    """scene-tracker.md content should be appended to timeline.md."""
+    ...
+```
+
+### Pass Criteria
+- `python scripts/migrate_bible_to_canon.py --dry-run` shows correct mapping without changes
+- `python scripts/migrate_bible_to_canon.py --execute` moves all files, updates refs
+- `python scripts/migrate_bible_to_canon.py --verify` passes
+- `python scripts/migrate_bible_to_canon.py --rollback` restores original state
+- `pytest tests/test_migration.py` — all pass
+
+---
+
+## S0.4: Canon Restructure (Execute Migration)
+
+**Goal**: Run the migration on the real repo and create the hierarchical directory structure.
+
+### Actions (Automated by Migration Script + Manual Setup)
+
+1. Run `python scripts/migrate_bible_to_canon.py --execute`
+2. Create new directories:
+   - `canon/acts/` (empty, ready for act outlines)
+3. Update `canon/index.md` to reference new structure
+4. Archive `Entity-relationship-matrix.md` content into test fixture
+5. Verify: `python scripts/migrate_bible_to_canon.py --verify`
+6. `git commit -m "phase0: migrate bible/ to canon/, restructure for hierarchy"`
+
+### Pass Criteria
+- `canon/world/story-bible.md` exists with original content
+- `canon/world/world-rules.md` exists with original content
+- `canon/timeline.md` contains merged scene-tracker content
+- `canon/acts/` directory exists
+- `canon/relationships.yaml` exists and passes schema validation
+- `bible/` contains backward-compat redirect or is removed
+- No skill references `bible/` — all updated to `canon/`
+- `python scripts/validate_coauthor_setup.py` passes (updated version)
+- `git log -1` shows the migration commit
+
+---
+
+## S0.5: Pipeline State + Context Loader + start_step
+
+**Goal**: Build the session management layer.
+
+### Files to Create
+
+| File | Purpose |
+|------|---------|
+| [NEW] `.pipeline-state.yaml` | Initial pipeline state (empty project, position at L1) |
+| [NEW] `scripts/context_loader.py` | Reads state, outputs file list for context loading |
+| [NEW] `scripts/start_step.bat` | Windows wrapper for zero-friction session start |
+| [NEW] `tests/test_context_loader.py` | TDD: context loading rules |
+
+### TDD Approach
+
+```python
+# tests/test_context_loader.py
+
+def test_l1_concept_loads_system_files_only():
+    """At L1 (story concept), only system files should be loaded."""
+    state = make_state(level="L1", position="concept")
+    files = context_loader.get_manifest(state, root=FIXTURE_ROOT)
+    assert "CLAUDE.md" in files
+    assert "canon/index.md" in files
+    assert not any("acts/" in f for f in files)
+
+def test_l3_act2_loads_parent_chain_plus_sibling():
+    """At L3/Act2, should load: concept, arc, act-1-outline (sibling), act-2-outline."""
+    state = make_state(level="L3", act=2)
+    files = context_loader.get_manifest(state, root=FIXTURE_ROOT)
+    assert "canon/story-concept.md" in files
+    assert "canon/story-arc.md" in files
+    assert "canon/acts/act-1-outline.md" in files  # sibling
+    assert "canon/acts/act-2-outline.md" in files  # current
+
+def test_l5_scene_loads_chapter_outline_and_character_files():
+    """At L5 (scene draft), should load chapter outline + referenced characters."""
+    state = make_state(level="L5", act=1, chapter=2, scene=1)
+    files = context_loader.get_manifest(state, root=FIXTURE_ROOT)
+    assert "canon/acts/act-1/ch2-outline.md" in files
+    # Should NOT load act-1/ch1/ scenes (too much context)
+
+def test_manifest_hash_is_deterministic():
+    """Same state should produce same manifest hash."""
+    state = make_state(level="L3", act=1)
+    hash1 = context_loader.get_manifest_hash(state, root=FIXTURE_ROOT)
+    hash2 = context_loader.get_manifest_hash(state, root=FIXTURE_ROOT)
+    assert hash1 == hash2
+
+def test_reproducibility_bundle_includes_all_fields():
+    """Reproducibility bundle should have manifest_hash, canon_version, agent_config."""
+    state = make_state(level="L3", act=1)
+    bundle = context_loader.get_reproducibility_bundle(state, root=FIXTURE_ROOT)
+    assert "context_manifest_hash" in bundle
+    assert "canon_version" in bundle
+    assert "agent_config" in bundle
+```
+
+### Pass Criteria
+- `pytest tests/test_context_loader.py` — all pass
+- `python scripts/context_loader.py --state .pipeline-state.yaml` outputs a file list
+- `scripts/start_step.bat` runs in Antigravity terminal without errors (manual test)
+
+---
+
+## S0.6: Skill Path Updates + Validation
+
+**Goal**: Update all skills, CLAUDE.md, and the setup validator to work with the new `canon/` structure.
+
+### Files to Modify
+
+| File | Change |
+|------|--------|
+| `.claude/skills/continuity-callback/SKILL.md` | `book_bible_or_notes` → `canon/` refs, `scene_tracker` → `canon/timeline.md` |
+| `.claude/skills/scene-draft/SKILL.md` | `World Rules` → `canon/world/world-rules.md` |
+| `.claude/skills/character-truth/SKILL.md` | `character_bible` → `canon/` ref |
+| `.claude/skills/scene-architect/SKILL.md` | `character_bible` → `canon/` ref |
+| `CLAUDE.md` | Update Key Directories, Foundation Setup |
+| `canon/index.md` | Update to include new structure (acts/, relationships.yaml, world/) |
+| `scripts/validate_coauthor_setup.py` | Add checks for relationships.yaml, acts/, .pipeline-state.yaml, schemas/ |
+
+### No TDD — Verification Only
+
+These are straightforward text replacements. Verify with:
+
+```bash
+# No skill should reference bible/ anymore
+grep -r "bible" .claude/skills/ CLAUDE.md  # should return 0 results
+
+# Validation script should pass
+python scripts/validate_coauthor_setup.py
+
+# All schemas should validate
+python scripts/schema_validator.py --all
+```
+
+### Pass Criteria
+- `grep -ri "bible/" .claude/skills/ CLAUDE.md` returns nothing
+- `python scripts/validate_coauthor_setup.py` passes with new checks
+- `git diff --stat` shows all modified files
+- Final `git commit -m "phase0: complete — schemas, relationships, migration, pipeline state, skill updates"`
+
+---
+
+## Summary: Build Order
+
+| Step | Section | Key Output | TDD? | Est. Effort |
+|------|---------|------------|------|------------|
+| 1 | S0.1 | `schemas/`, `scripts/schema_validator.py` | ✅ Tests first | Medium |
+| 2 | S0.2 | `canon/relationships.yaml`, `scripts/relationship_query.py` | ✅ Tests first | Medium-High |
+| 3 | S0.3 | `scripts/migrate_bible_to_canon.py` | ✅ Tests first | Medium |
+| 4 | S0.4 | Migration executed, `canon/` restructured | Verification | Low |
+| 5 | S0.5 | `.pipeline-state.yaml`, `scripts/context_loader.py`, `start_step.bat` | ✅ Tests first | Medium |
+| 6 | S0.6 | Skills + CLAUDE.md updated, validation passing | Verification | Low |
+
+> [!NOTE]
+> Each section should end with a git commit. If anything breaks, we can roll back to the previous section's commit.
