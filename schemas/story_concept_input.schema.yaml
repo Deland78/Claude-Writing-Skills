@@ -1,0 +1,37 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "story_concept_input/v1"
+title: Story Concept Input
+description: Skill-specific parameters for the story-concept skill (L1).
+
+type: object
+required:
+  - genre
+  - protagonist
+  - inciting_situation
+
+properties:
+  genre:
+    type: string
+    description: "Primary genre (e.g., thriller, sci-fi, literary fiction)."
+    minLength: 1
+  protagonist:
+    type: string
+    description: "Protagonist name or brief description."
+    minLength: 1
+  inciting_situation:
+    type: string
+    description: "What disrupts the status quo and launches the story."
+    minLength: 1
+  comparable_titles:
+    type: array
+    items:
+      type: string
+    description: "Reference works for tone, scope, and audience expectations."
+  world_premise:
+    type: string
+    description: "World context for speculative fiction (magic system, tech level, etc.)."
+  target_length:
+    type: string
+    description: "Word count target (e.g., '80,000 words')."
+
+additionalProperties: false

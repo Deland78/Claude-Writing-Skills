@@ -287,7 +287,7 @@ def test_node_input_empty_context_files_fails():
 def test_all_schemas_are_valid():
     """Every schema file should be well-formed JSON Schema with $id and $schema."""
     results = validate_all()
-    assert len(results) >= 7, f"Expected at least 7 schemas, found {len(results)}"
+    assert len(results) >= 10, f"Expected at least 10 schemas, found {len(results)}"
     for name, result in results.items():
         assert result.ok, f"Schema '{name}' failed: {result.errors}"
 
@@ -313,3 +313,190 @@ def test_validate_file_bad_example():
         pytest.skip("Example file not found")
     result = validate_file(schema_path, data_path)
     assert not result.ok
+
+
+# --- story_concept_input (Phase 1) ---
+
+
+def test_valid_story_concept_input_passes():
+    """A well-formed story concept input should pass."""
+    data = {
+        "genre": "post-apocalyptic thriller",
+        "protagonist": "Marcus Reeves",
+        "inciting_situation": "A coded signal from a dead zone.",
+    }
+    assert validate("story_concept_input", data).ok
+
+
+def test_story_concept_input_with_optionals_passes():
+    """Story concept with all optional fields should pass."""
+    data = {
+        "genre": "sci-fi",
+        "protagonist": "Elena",
+        "inciting_situation": "Colony ship loses contact with Earth.",
+        "comparable_titles": ["The Expanse", "Seveneves"],
+        "world_premise": "Near-future space colonization.",
+        "target_length": "90,000 words",
+    }
+    assert validate("story_concept_input", data).ok
+
+
+def test_story_concept_input_missing_genre_fails():
+    """Missing genre should fail."""
+    data = {
+        "protagonist": "Marcus",
+        "inciting_situation": "Signal from dead zone.",
+    }
+    result = validate("story_concept_input", data)
+    assert not result.ok
+
+
+def test_story_concept_input_missing_protagonist_fails():
+    """Missing protagonist should fail."""
+    data = {
+        "genre": "thriller",
+        "inciting_situation": "Signal from dead zone.",
+    }
+    result = validate("story_concept_input", data)
+    assert not result.ok
+
+
+def test_story_concept_input_empty_genre_fails():
+    """Empty genre string should fail minLength."""
+    data = {
+        "genre": "",
+        "protagonist": "Marcus",
+        "inciting_situation": "Signal.",
+    }
+    result = validate("story_concept_input", data)
+    assert not result.ok
+
+
+def test_story_concept_input_extra_field_fails():
+    """Additional properties should be rejected."""
+    data = {
+        "genre": "thriller",
+        "protagonist": "Marcus",
+        "inciting_situation": "Signal.",
+        "mood": "dark",
+    }
+    result = validate("story_concept_input", data)
+    assert not result.ok
+
+
+# --- story_arc_input (Phase 1) ---
+
+
+def test_valid_story_arc_input_passes():
+    """A well-formed story arc input should pass."""
+    data = {
+        "concept_file": "canon/story-concept.md",
+    }
+    assert validate("story_arc_input", data).ok
+
+
+def test_story_arc_input_with_optionals_passes():
+    """Story arc with all optional fields should pass."""
+    data = {
+        "concept_file": "canon/story-concept.md",
+        "target_scope": "full_story",
+        "act_count": 4,
+        "character_files": ["canon/characters/marcus.md"],
+    }
+    assert validate("story_arc_input", data).ok
+
+
+def test_story_arc_input_missing_concept_file_fails():
+    """Missing concept_file should fail."""
+    data = {"target_scope": "full_story"}
+    result = validate("story_arc_input", data)
+    assert not result.ok
+
+
+def test_story_arc_input_act_count_below_minimum_fails():
+    """act_count below 3 should fail."""
+    data = {
+        "concept_file": "canon/story-concept.md",
+        "act_count": 2,
+    }
+    result = validate("story_arc_input", data)
+    assert not result.ok
+
+
+# --- act_outline_input (Phase 1) ---
+
+
+def test_valid_act_outline_input_passes():
+    """A well-formed act outline input should pass."""
+    data = {
+        "arc_file": "canon/story-arc.md",
+        "act_number": 1,
+    }
+    assert validate("act_outline_input", data).ok
+
+
+def test_act_outline_input_with_hint_passes():
+    """Act outline with chapter_count_hint should pass."""
+    data = {
+        "arc_file": "canon/story-arc.md",
+        "act_number": 2,
+        "chapter_count_hint": 8,
+    }
+    assert validate("act_outline_input", data).ok
+
+
+def test_act_outline_input_missing_act_number_fails():
+    """Missing act_number should fail."""
+    data = {"arc_file": "canon/story-arc.md"}
+    result = validate("act_outline_input", data)
+    assert not result.ok
+
+
+def test_act_outline_input_act_number_zero_fails():
+    """act_number: 0 should fail minimum: 1 constraint."""
+    data = {
+        "arc_file": "canon/story-arc.md",
+        "act_number": 0,
+    }
+    result = validate("act_outline_input", data)
+    assert not result.ok
+
+
+def test_act_outline_input_missing_arc_file_fails():
+    """Missing arc_file should fail."""
+    data = {"act_number": 1}
+    result = validate("act_outline_input", data)
+    assert not result.ok
+
+
+# --- Phase 1 example files ---
+
+
+def test_validate_file_valid_concept_input():
+    """Valid concept input example should pass schema validation."""
+    schema_path = SCHEMAS_DIR / "story_concept_input.schema.yaml"
+    data_path = EXAMPLES_DIR / "phase1" / "valid_concept_input.yaml"
+    if not data_path.exists():
+        pytest.skip("Example file not found")
+    result = validate_file(schema_path, data_path)
+    assert result.ok, f"Validation failed: {result.errors}"
+
+
+def test_validate_file_valid_arc_input():
+    """Valid arc input example should pass schema validation."""
+    schema_path = SCHEMAS_DIR / "story_arc_input.schema.yaml"
+    data_path = EXAMPLES_DIR / "phase1" / "valid_arc_input.yaml"
+    if not data_path.exists():
+        pytest.skip("Example file not found")
+    result = validate_file(schema_path, data_path)
+    assert result.ok, f"Validation failed: {result.errors}"
+
+
+def test_validate_file_valid_outline_input():
+    """Valid outline input example should pass schema validation."""
+    schema_path = SCHEMAS_DIR / "act_outline_input.schema.yaml"
+    data_path = EXAMPLES_DIR / "phase1" / "valid_outline_input.yaml"
+    if not data_path.exists():
+        pytest.skip("Example file not found")
+    result = validate_file(schema_path, data_path)
+    assert result.ok, f"Validation failed: {result.errors}"

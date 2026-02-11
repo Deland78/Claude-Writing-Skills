@@ -1,0 +1,31 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "story_arc_input/v1"
+title: Story Arc Input
+description: Skill-specific parameters for the story-arc-builder skill (L2).
+
+type: object
+required:
+  - concept_file
+
+properties:
+  concept_file:
+    type: string
+    description: "Path to canon/story-concept.md."
+    minLength: 1
+  target_scope:
+    type: string
+    description: "What to arc over (default: full_story)."
+    default: "full_story"
+  act_count:
+    type: integer
+    description: "Number of acts (3 or 4)."
+    minimum: 3
+    maximum: 5
+    default: 4
+  character_files:
+    type: array
+    items:
+      type: string
+    description: "Paths to character profile files in canon/characters/."
+
+additionalProperties: false

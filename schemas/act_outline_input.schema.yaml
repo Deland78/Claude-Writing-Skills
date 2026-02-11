@@ -1,0 +1,25 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "act_outline_input/v1"
+title: Act Outline Input
+description: Skill-specific parameters for the act-outline skill (L3).
+
+type: object
+required:
+  - arc_file
+  - act_number
+
+properties:
+  arc_file:
+    type: string
+    description: "Path to canon/story-arc.md."
+    minLength: 1
+  act_number:
+    type: integer
+    description: "Which act to outline."
+    minimum: 1
+  chapter_count_hint:
+    type: integer
+    description: "Suggested chapter count for this act."
+    minimum: 1
+
+additionalProperties: false

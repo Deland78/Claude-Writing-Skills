@@ -1,0 +1,5 @@
+concept_file: "canon/story-concept.md"
+target_scope: "full_story"
+act_count: 4
+character_files:
+  - "canon/characters/marcus.md"

@@ -155,6 +155,15 @@ Orchestrate skills with pause-for-review between stages
 
 ## Getting Started
 
+### Quick Start: Stage 0 (Story Development)
+1. Validate setup: `python scripts/validate_coauthor_setup.py --root .`
+2. Run `/project:skills:story-concept` → produces `canon/story-concept.md` (L1)
+3. Run `/project:skills:story-arc-builder` → produces `canon/story-arc.md` (L2)
+4. Run `/project:skills:act-outline` (per act) → produces `canon/acts/act-{N}-outline.md` (L3)
+5. Pipeline state advances automatically through L1→L2→L3 in `.pipeline-state.yaml`
+6. Continue to Stage 1 (chapter planning) with `/project:pipeline-run`
+
+### Background Reading
 1. Read [01_PRODUCT_ROADMAP.md](01_PRODUCT_ROADMAP.md) for full context
 2. Review [02_PHASE1_PRDs.md](02_PHASE1_PRDs.md) for detailed requirements
 3. Use [03_IMPLEMENTATION_GUIDE.md](03_IMPLEMENTATION_GUIDE.md) to build the system

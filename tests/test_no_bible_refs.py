@@ -18,6 +18,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _MIGRATION_DOCS = {
     "implementation_plan.md",
     "phase0_detailed_plan.md",
+    "phase1_detailed_plan.md",
+    "phase1_acceptance_checklist.md",
     "walkthrough.md",
     "task.md",
     "migrate_bible_to_canon.py",
