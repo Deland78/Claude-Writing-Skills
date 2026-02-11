@@ -43,6 +43,24 @@ Orchestrate the full fiction writing pipeline with state management and review p
 6. Load skill: `.claude/skills/final-polish/SKILL.md`
 7. **PAUSE**: Final editorial review and git commit.
 
+### Mode C: Mob Review (Optional, any stage)
+
+At any pipeline step, invoke `/project:skills:mob-session` to run a mob review:
+1. Mob session loads context via pipeline state manifest.
+2. Follows 4-phase protocol (Structure → Comments → Resolution → Commit).
+3. Governance rules apply (max rounds, citation enforcement).
+4. On commit, state advances per the same rules as Mode A.
+5. Return to normal pipeline navigation.
+
+Mode is per-step, not per-session. You can alternate between Mode A (direct skill execution) and Mode C (mob review) at any point.
+
+| User action | Effect |
+|-------------|--------|
+| Run a Stage 0 skill directly | Mode A — skill executes, no agent comments |
+| Run `/project:skills:mob-session` | Mode C — Lead Editor orchestrates 4-phase protocol |
+| Say "just validate this" during a mob session | Exits to Mode A for this step |
+| Say "let's discuss" after a Mode A step | Enters Mode C on the artifact just produced |
+
 ## State Management
 The pipeline tracks progress in `.pipeline-state.yaml` at the project root.
 If interrupted, rerunning the command will resume from the last incomplete stage.

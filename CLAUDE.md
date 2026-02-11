@@ -21,12 +21,15 @@ This repository contains the Fiction Writing Skills System, a Claude Code skill 
 - `schemas/`: JSON Schema definitions for pipeline contracts.
 - `scripts/`: Pipeline support tools (context loader, validators, relationship query).
 - `.claude/skills/`: Individual skill definitions.
+- `.claude/skills/mob-session/`: Mob session skill for Mode C simulated MOE review.
+- `agents/`: Agent role definitions loaded by the mob session skill (Lead Editor, Plot Analyst, Character Specialist, Depth Partner, Continuity Agent, Prose Crafter).
 
 ## Primary Commands
 - `/project:pipeline-run {scene_path}`: Orchestrate the full 4-stage pipeline (Stage 0–3).
 - `/project:skills:story-concept`: Generate L1 story concept → `canon/story-concept.md`.
 - `/project:skills:story-arc-builder`: Generate L2 arc → `canon/story-arc.md`.
 - `/project:skills:act-outline`: Generate L3 act outline → `canon/acts/act-{N}-outline.md`.
+- `/project:skills:mob-session`: Run a simulated MOE mob review on the current artifact (Mode C).
 - `/project:skills:voice-anchor`: Set or verify the narrative voice.
 - `/project:skills:scene-architect`: Plan scenes with Story Grid structure.
 - `/project:skills:scene-draft`: Generate prose with voice/rule enforcement.

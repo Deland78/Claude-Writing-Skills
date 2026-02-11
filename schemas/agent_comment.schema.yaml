@@ -47,5 +47,9 @@ properties:
     type: ["string", "null"]
     enum: ["accepted", "rejected", "deferred", null]
     description: "Human resolution of this comment. Null if not yet resolved."
+  citation_status:
+    type: string
+    enum: ["cited", "advisory"]
+    description: "Whether this comment has canon file citations. Cited if citations array is non-empty, advisory otherwise."
 
 additionalProperties: false

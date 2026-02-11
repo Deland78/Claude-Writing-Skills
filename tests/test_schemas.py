@@ -98,6 +98,46 @@ def test_agent_comment_invalid_resolution_fails():
     assert not result.ok
 
 
+def test_agent_comment_citation_status_cited_passes():
+    """citation_status 'cited' should pass validation."""
+    comment = {
+        "agent": "plot_analyst",
+        "model": "claude-haiku",
+        "comment": "Pinch point missing.",
+        "citations": ["canon/story-arc.md#L45"],
+        "suggested_changes": [],
+        "citation_status": "cited",
+    }
+    assert validate("agent_comment", comment).ok
+
+
+def test_agent_comment_citation_status_advisory_passes():
+    """citation_status 'advisory' should pass validation."""
+    comment = {
+        "agent": "depth_partner",
+        "model": "claude-haiku",
+        "comment": "Theme feels underdeveloped.",
+        "citations": [],
+        "suggested_changes": [],
+        "citation_status": "advisory",
+    }
+    assert validate("agent_comment", comment).ok
+
+
+def test_agent_comment_citation_status_invalid_fails():
+    """Unknown citation_status should fail validation."""
+    comment = {
+        "agent": "plot_analyst",
+        "model": "claude-haiku",
+        "comment": "Some observation.",
+        "citations": [],
+        "suggested_changes": [],
+        "citation_status": "unknown",
+    }
+    result = validate("agent_comment", comment)
+    assert not result.ok
+
+
 # --- commit_patch ---
 
 

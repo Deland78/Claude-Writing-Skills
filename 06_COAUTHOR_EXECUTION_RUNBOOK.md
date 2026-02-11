@@ -36,6 +36,37 @@ python scripts/validate_coauthor_setup.py --root .
 6. Present alternatives and pause for approval.
 7. Capture accepted preference updates in `canon/preferences.md`.
 
+## Mob Review Sessions (Mode C)
+
+At any pipeline step, you can run a mob review where specialist agents critique the current artifact:
+
+### Running a Mob Session
+```bash
+# Invoke the mob session skill
+/project:skills:mob-session
+```
+
+### What Happens
+1. **Phase 1 (Structure Offer)**: Lead Editor organizes input into the step's template format. You approve, adjust, or skip.
+2. **Phase 2 (Comment Queue)**: Each active agent (Plot Analyst, Character Specialist, Depth Partner, Continuity Agent, Prose Crafter) gives one comment. You accept, reject, revise, or park each comment.
+3. **Phase 3 (Resolution Check)**: Lead Editor summarizes the round. You choose: another round, commit, or park.
+4. **Phase 4 (Commit)**: Approved changes are written to canon files, relationships updated, trace logged.
+
+### Governance
+- Max rounds: 3 (configurable in `.pipeline-state.yaml` → `mob_config.max_rounds`)
+- Diminishing returns: if no changes accepted in a round, session prompts to commit
+- Citation enforcement: comments without `canon/` citations are tagged `[advisory]` and cannot mutate canon without your override
+
+### Example Workflow
+```
+1. /project:skills:story-concept  → produces canon/story-concept.md (Mode A)
+2. /project:skills:mob-session    → agents review the concept (Mode C)
+3. /project:skills:story-arc-builder → produces canon/story-arc.md (Mode A)
+4. /project:skills:mob-session    → agents review the arc (Mode C)
+```
+
+See `docs/mob_protocol.md` for the full protocol specification.
+
 ## Notes
 - This runbook intentionally keeps implementation lightweight while enforcing core structure.
 - The validator script is deterministic and CI-friendly.

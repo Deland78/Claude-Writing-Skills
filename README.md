@@ -163,6 +163,22 @@ Orchestrate skills with pause-for-review between stages
 5. Pipeline state advances automatically through L1→L2→L3 in `.pipeline-state.yaml`
 6. Continue to Stage 1 (chapter planning) with `/project:pipeline-run`
 
+### Mob Review (Mode C)
+
+At any pipeline step, run a mob review where specialist agents critique the current artifact:
+
+```
+/project:skills:mob-session
+```
+
+The Lead Editor orchestrates specialist agents (Plot Analyst, Character Specialist, Depth Partner, Continuity Agent, Prose Crafter) in a structured 4-phase protocol:
+1. **Structure Offer** — organizes your input
+2. **Comment Queue** — each agent gives one focused comment with canon citations
+3. **Resolution Check** — summarizes accepted changes, checks governance rules
+4. **Commit** — writes approved changes to canon files
+
+You maintain full control: accept, reject, revise, or park each suggestion. See `docs/mob_protocol.md` for details.
+
 ### Background Reading
 1. Read [01_PRODUCT_ROADMAP.md](01_PRODUCT_ROADMAP.md) for full context
 2. Review [02_PHASE1_PRDs.md](02_PHASE1_PRDs.md) for detailed requirements

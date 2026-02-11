@@ -20,6 +20,8 @@ _MIGRATION_DOCS = {
     "phase0_detailed_plan.md",
     "phase1_detailed_plan.md",
     "phase1_acceptance_checklist.md",
+    "phase2a_detailed_plan.md",
+    "phase2a_acceptance_checklist.md",
     "walkthrough.md",
     "task.md",
     "migrate_bible_to_canon.py",
