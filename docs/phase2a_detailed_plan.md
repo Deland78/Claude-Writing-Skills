@@ -4,182 +4,176 @@
 
 ```mermaid
 flowchart TD
-    P1["P2.0: Phase 1 Exit Gate"]
-    S1["P2.1: Agent Role Definitions"]
-    S2["P2.2: Trace Schemas (Dual-Write)"]
-    S3["P2.3: Mob Governance Policies"]
-    S4["P2.4: Simulated MOE Protocol"]
-    S5["P2.5: Stage 0 Integration"]
-    S6["P2.6: Eval + Acceptance Pack"]
+    G0["P2A.0: Phase 1 Exit Gate"]
+    G1["P2A.1: Agent Role Definitions & Contracts"]
+    G2["P2A.2: Trace Schemas (Dual-Write)"]
+    G3["P2A.3: Lead Editor Protocol & Turn State"]
+    G4["P2A.4: Mob Governance (Termination + Citation)"]
+    G5["P2A.5: Pipeline Integration (Mode C)"]
+    G6["P2A.6: Eval Trace Pack & Acceptance"]
 
-    P1 --> S1
-    P1 --> S2
-    P1 --> S3
-    S1 --> S4
-    S2 --> S4
-    S3 --> S4
-    S4 --> S5
-    S5 --> S6
+    G0 --> G1
+    G0 --> G2
+    G1 --> G3
+    G2 --> G3
+    G3 --> G4
+    G4 --> G5
+    G5 --> G6
 ```
 
-**Critical path**: P2.0 → P2.1 → P2.2 → P2.3 → P2.4 → P2.6.
+**Critical path**: P2A.0 → P2A.1 → P2A.2 → P2A.3 → P2A.4 → P2A.6
 
 ---
 
-## P2.0: Phase 1 Exit Gate (Hard Prerequisite)
+## P2A.0: Phase 1 Exit Gate (Hard Prerequisite)
 
-**Goal**: Ensure L1-L3 skills are stable before layering orchestration on top.
+**Goal**: Block Phase 2A until Stage 0 artifacts and contracts are stable enough for multi-agent critique loops.
 
 ### Required green checks
 - `python scripts/validate_coauthor_setup.py --root .`
+- `pytest tests/test_schemas.py`
 - `pytest tests/test_skill_concept.py`
-- `grep -ri "bible/" .claude/skills` returns nothing (full migration).
 - **Smoke Trace**: A Phase 1 end-to-end run (`phase1-smoke.trace.md`) exists and is structurally valid.
+- **Artifact Check**: `canon/story-concept.md`, `canon/story-arc.md` exist and validate.
 
 ### Pass criteria
-- All tests pass.
-- `.pipeline-state.yaml` exists and tracks L1-L3 nodes correctly.
+- All checks pass locally.
+- No unresolved placeholder sections in Stage 0 artifacts.
 
 ---
 
-## P2.1: Agent Role Definitions
+## P2A.1: Agent Role Scaffolding & Shared Contract
 
-**Goal**: Define the system prompts for the MOE Mob agents.
+**Goal**: Define strict role boundaries so simulated MOE stays coherent in one-session role switching.
 
 ### Files to create
 | File | Purpose |
 |------|---------|
-| [NEW] `agents/lead-editor.md` | Orchestrator: manages turns, formatting, consensus |
-| [NEW] `agents/plot-analyst.md` | Specialist: structure, stakes, causality |
-| [NEW] `agents/character-specialist.md` | Specialist: voice, motivation, arc integrity |
-| [NEW] `agents/depth-partner.md` | Specialist: theme, philosophy, meaning |
-| [NEW] `agents/continuity-agent.md` | Specialist: facts, timeline, entity consistency |
-| [NEW] `tests/test_agents.py` | Verify agent definitions exist and contain required sections |
+| [NEW] `agents/lead-editor.md` | Orchestrator role, protocol owner, output formatter |
+| [NEW] `agents/plot-analyst.md` | Structure/causality/tension specialist |
+| [NEW] `agents/character-specialist.md` | Motivation/voice/arc integrity specialist |
+| [NEW] `agents/depth-partner.md` | Theme, moral pressure, meaning specialist |
+| [NEW] `agents/continuity-agent.md` | Canon fact-check + relationship consistency specialist |
+| [NEW] `agents/prose-crafter.md` | Line-level craft specialist (active L4-L5 only) |
+| [NEW] `docs/agent_contract.md` | Shared constraints for all agents |
+| [NEW] `tests/test_agents.py` | Verify agent definitions against contract |
+
+### Contract Requirements (TDD verified)
+- **Scope**: What the agent evaluates (e.g., Plot Analyst: "Causality, Pacing").
+- **Out-of-scope**: What they ignore (e.g., Plot Analyst: "Prose style, Grammar").
+- **Evidence Rule**: Comments must cite specific lines/files.
+- **Escalation Rule**: When to defer to another specialist.
 
 ### TDD Approach
 ```python
 # tests/test_agents.py
-def test_lead_editor_has_orchestration_rules():
-    prompt = load_agent("lead-editor")
-    assert "Role-Switching Protocol" in prompt
-    assert "Consensus Tracking" in prompt
+def test_all_agents_have_scope_definition():
+    for agent in ["lead-editor", "plot-analyst", "depth-partner"]:
+        prompt = load_agent(agent)
+        assert "## Scope" in prompt
+        assert "## Out of Scope" in prompt
 
-def test_continuity_agent_has_tool_defs():
-    prompt = load_agent("continuity-agent")
-    assert "relationships.yaml" in prompt
+def test_prose_crafter_restricted_levels():
+    prompt = load_agent("prose-crafter")
+    assert "Active Levels: L4, L5" in prompt
 ```
-
-### Pass criteria
-- All agent files exist in `agents/`.
-- Lead Editor prompt explicitly includes the "Simulated MOE" protocol instructions.
 
 ---
 
-## P2.2: Trace Schemas (Dual-Write)
+## P2A.2: Trace Schemas (Dual-Write)
 
-**Goal**: Implement the M2 finding (dual-write JSON + MD) for traces.
+**Goal**: Implement M2 finding (JSON+MD) for reproducible debuggability.
 
 ### Files to create/modify
 | File | Purpose |
 |------|---------|
-| [NEW] `schemas/trace_record.schema.yaml` | JSON schema for the `.trace.json` file |
-| [NEW] `templates/trace.template.md` | Markdown template for rendering the view |
-| [NEW] `scripts/trace_renderer.py` | Utility: `render(json_path) -> md_path` |
-| [MODIFY] `tests/test_schemas.py` | Add trace schema validation |
+| [NEW] `schemas/trace_record.schema.yaml` | JSON schema for `.trace.json` |
+| [NEW] `templates/trace.template.md` | Markdown template for `human-eval` view |
+| [NEW] `scripts/trace_renderer.py` | Utility: `render(json) -> md` |
+| [MODIFY] `tests/test_schemas.py` | Add trace validation |
 
-### TDD Approach
-```python
-# tests/test_trace_renderer.py
-def test_render_creates_markdown_from_json():
-    data = load_fixture("valid_trace.json")
-    md = trace_renderer.render(data)
-    assert "# Trace:" in md
-    assert "**Timestamp**" in md
-    assert "<!-- HUMAN-EVAL" in md  # M2 requirement
+### Output Example
+```json
+{
+  "step": "L2/Arc",
+  "mode": "mob",
+  "turns": [
+    {
+      "agent": "plot-analyst",
+      "comment": "Act 2A lacks a pinch point.",
+      "citations": ["canon/story-arc.md#L45"],
+      "human_decision": "accepted"
+    }
+  ]
+}
 ```
-
-### Pass criteria
-- Schema validates a sample trace JSON.
-- Renderer produces Markdown that matches the design doc format.
 
 ---
 
-## P2.3: Mob Governance Policies
+## P2A.3: Lead Editor Protocol & Turn State
 
-**Goal**: Implement the C5 (Termination) and M5 (Citation) policies in the pipeline state.
-
-### Files to modify
-| File | Purpose |
-|------|---------|
-| [MODIFY] `.pipeline-state.yaml` | Add `mob_config` section |
-| [MODIFY] `schemas/pipeline_state.schema.yaml` | Validate `mob_config` fields |
-
-### Configuration Structure
-```yaml
-mob_config:
-  max_rounds: 3
-  budget_cap_usd: 1.00
-  diminishing_return_threshold: 0  # accepted deltas
-  mandatory_decision_after: 3
-```
-
-### Pass criteria
-- `.pipeline-state.yaml` includes default governance config.
-- Validator accepts valid config, rejects missing fields.
-
----
-
-## P2.4: Simulated MOE Protocol (Lead Editor)
-
-**Goal**: The core of Phase 2A. A "Simulated MOE" where the Lead Editor role-switches within a single session.
+**Goal**: Make one-session simulated MOE deterministic and reproducible.
 
 ### Files to create
 | File | Purpose |
 |------|---------|
-| [NEW] `.claude/commands/skills/mob-session/SKILL.md` | The "skill" that starts a mob session |
+| [NEW] `.claude/commands/skills/mob-session/SKILL.md` | The skill driving the session |
+| [NEW] `docs/moe_mob_protocol.md` | Canonical turn-by-turn rules |
 
-### Protocol Logic (in SKILL.md + Lead Editor prompt)
-1. User invokes `/mob-session {node}`.
-2. Skill loads `agents/` definitions into context.
-3. Skill loads `context_manifest` (content).
-4. **Lead Editor** takes control:
-   - "Round 1 Start"
-   - Calls on **Plot Analyst**: "Review this text for structural issues."
-   - (Simulated): "Speaking as Plot Analyst..." → critique.
-   - Calls on **Character Specialist**: "Review for voice."
-   - (Simulated): "Speaking as Character Specialist..." → critique.
-   - **Lead Editor**: Synthesizes comments, presents to user.
-   - User responds (Accept/Reject/Edit).
-5. **Lead Editor** checks Governance (P2.3):
-   - Max rounds reached?
-   - Diminishing returns?
-   - "Continue to Round 2 or Commit?"
-
-### Pass criteria
-- Running `/mob-session` starts a multi-turn critique loop.
-- Lead Editor correctly adopts sub-agent personas.
-- Governance rules trigger a "Commit or Park" prompt after 3 rounds.
+### Protocol Logic (Lead Editor System Prompt)
+1. **Round Setup**: State target artifact + objective.
+2. **Agent Sequence**: `plot -> character -> depth -> continuity -> prose*`
+3. **Single-Turn Discipline**: One agent speaks per turn.
+4. **Human Gate**: `accept / reject / revise / park` after *every* comment.
+5. **State Log**: Lead Editor maintains a running ledger of decisions.
+6. **Round Close**: Summary of accepted deltas vs parked questions.
 
 ---
 
-## P2.5: Stage 0 Integration
+## P2A.4: Mob Governance (Termination + Citation)
 
-**Goal**: Wire the mob session into the pipeline workflow.
+**Goal**: Enforce C5 (Termination) and M5 (Citation) policies.
 
-### Files to modify
+### Files to modify/create
 | File | Purpose |
 |------|---------|
-| [MODIFY] `.claude/commands/pipeline-run.md` | Update Stage 0 to usage `mob-session` instead of raw skills |
-| [MODIFY] `README.md` | Update workflow documentation |
+| [MODIFY] `.pipeline-state.yaml` | Add `mob_config` section |
+| [NEW] `docs/citation_enforcement.md` | Rules for `[advisory]` tagging |
+| [MODIFY] `agents/lead-editor.md` | Inject termination/citation rules |
 
-### Pass criteria
-- Documentation reflects the new Mob-based workflow for L1-L3.
+### Enforcement Rules
+1. **Citation**: Claims without file evidence are auto-tagged `[advisory]` and cannot mutate canon directly.
+2. **Termination**:
+   - **Max Rounds**: 3 (default). Force "Commit or Park".
+   - **Diminishing Returns**: 0 accepted deltas in a round → Prompt to close.
+   - **Budget Cap**: (future hook)
 
 ---
 
-## P2.6: Eval + Acceptance Pack
+## P2A.5: Pipeline Integration (Mode C)
 
-**Goal**: Prove Phase 2A works and generates usable trace data.
+**Goal**: Integrate simulated MOE into the standard workflow without breaking Mode A.
+
+### Files to modify
+| File | Change |
+|------|--------|
+| [MODIFY] `.claude/commands/pipeline-run.md` | Add Mode C entry point (`/mob-session`) |
+| [MODIFY] `06_COAUTHOR_EXECUTION_RUNBOOK.md` | practical mob sequence instructions |
+| [MODIFY] `README.md` | Add "How to run Mob Review" section |
+
+### Workflow
+1. Navigate to node (e.g., `L2/Arc`).
+2. `pipeline-run --mode mob` (or call `/mob-session`).
+3. Lead Editor takes over context.
+4. Execute Protocol (P2A.3).
+5. Commit changes to canon.
+6. Return to Mode A navigation.
+
+---
+
+## P2A.6: Eval Trace Pack & Acceptance
+
+**Goal**: Prove Phase 2A is operational and measurable.
 
 ### Files to create
 | File | Purpose |
@@ -187,24 +181,18 @@ mob_config:
 | [NEW] `docs/phase2a_acceptance_checklist.md` | Hard completion gate |
 | [NEW] `traces/phase2a-smoke.trace.json` | Generated machine trace |
 | [NEW] `traces/phase2a-smoke.trace.md` | Rendered human view |
+| [NEW] `traces/phase2a-failure-modes.trace.md` | Example of advisory/termination handling |
 
-### Verification Steps
-1. **End-to-End Run**:
-   - Start at L2 (Arc Builder).
-   - Invoke `/mob-session`.
-   - Complete 2 rounds of critique.
-   - Commit changes.
-2. **Trace Verification**:
-   - `trace.json` exists and contains all comments/actions.
-   - `trace.md` is rendered and readable.
-   - `human-eval` templates are present in the MD.
-3. **Governance Check**:
-   - Force a 4-round session → verify Lead Editor forces a decision.
+### Evaluation Slices
+- **Protocol Adherence**: Did Lead Editor stick to the turn order?
+- **Citation Behavior**: Were uncited claims correctly tagged `[advisory]`?
+- **Decision Quality**: Ratio of accepted vs rejected comments.
+- **Termination**: Did the session end clean on max rounds or consensus?
 
-### Phase 2A Completion Criteria
-- Simulated MOE works in a single session.
-- Traces are dual-written (JSON+MD).
-- Governance rules prevent infinite loops.
+### Completion Criteria
+- Simulated MOE runs in a single session.
+- Traces are dual-written.
+- Governance rules trigger correctly.
 - Acceptance checklist is green.
 
 ---
@@ -213,17 +201,18 @@ mob_config:
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Context window overflow | High | Phase 2A is single-session; stricter context limits in `context_loader`. |
-| Persona bleed | Medium | specialized system prompts for each agent. |
-| Trace data loss | High | JSON source-of-truth written *after every turn*. |
-| Governance ignored | Medium | Lead Editor prompt emphasizes "Role: Strict Moderator". |
+| Context overflow | High | Single-session limit; strict context manifest loading. |
+| Persona bleed | Medium | Explicit "Now speaking as X..." separators in Lead Editor prompt. |
+| Citation bypass | High | "Citation Check" step added to Protocol before any Commit. |
+| Infinite loops | High | Hard max-round stop in Governance config. |
+| Human fatigue | Medium | "Park" option available at every turn. |
 
 ---
 
 ## Commit Strategy
-1. `phase2a: add agent role definitions`
+1. `phase2a: add agent role scaffolding`
 2. `phase2a: add trace schema and renderer`
-3. `phase2a: add mob governance to pipeline-state`
-4. `phase2a: implement mob-session skill`
-5. `phase2a: update pipeline docs`
-6. `phase2a: add acceptance pack and smoke trace`
+3. `phase2a: add lead editor protocol and mob skill`
+4. `phase2a: add governance policies (citation/termination)`
+5. `phase2a: integrate mode-c into pipeline docs`
+6. `phase2a: add acceptance pack and traces`
