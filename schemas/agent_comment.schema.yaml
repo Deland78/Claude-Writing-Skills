@@ -1,0 +1,51 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "agent_comment/v1"
+title: Agent Comment
+description: Structured output from an agent during a MOE mob round.
+
+type: object
+required:
+  - agent
+  - model
+  - comment
+  - citations
+  - suggested_changes
+
+properties:
+  agent:
+    type: string
+    description: "Agent role identifier (e.g., 'plot_analyst', 'character_specialist')."
+  model:
+    type: string
+    description: "Model used for this comment (e.g., 'claude-haiku', 'claude-sonnet')."
+  comment:
+    type: string
+    description: "The agent's comment text."
+    minLength: 1
+  citations:
+    type: array
+    items:
+      type: string
+      pattern: "^canon/"
+    description: "List of canon file references supporting this comment."
+  suggested_changes:
+    type: array
+    items:
+      type: object
+      required:
+        - file
+        - description
+      properties:
+        file:
+          type: string
+        description:
+          type: string
+        line_range:
+          type: string
+          description: "Optional line range (e.g., 'L12-L18')."
+  resolution:
+    type: ["string", "null"]
+    enum: ["accepted", "rejected", "deferred", null]
+    description: "Human resolution of this comment. Null if not yet resolved."
+
+additionalProperties: false

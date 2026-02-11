@@ -1,0 +1,124 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "pipeline_state/v1"
+title: Pipeline State
+description: Machine-readable pipeline state for session management and context loading.
+
+type: object
+required:
+  - position
+  - mode
+  - canon_version
+  - max_context_tokens
+
+properties:
+  position:
+    type: object
+    required:
+      - level
+    properties:
+      level:
+        type: string
+        enum: ["L1", "L2", "L3", "L4", "L5"]
+        description: "Current hierarchy level."
+      act:
+        type: ["integer", "null"]
+      chapter:
+        type: ["integer", "null"]
+      scene:
+        type: ["integer", "null"]
+    additionalProperties: false
+
+  mode:
+    type: string
+    enum: ["manual", "mob"]
+    description: "Interaction mode."
+
+  canon_version:
+    type: integer
+    minimum: 0
+    description: "Monotonically increasing version, bumped on each commit."
+
+  last_commit_hash:
+    type: ["string", "null"]
+    description: "Git commit hash of the last pipeline commit."
+
+  max_context_tokens:
+    type: integer
+    minimum: 1000
+    default: 100000
+    description: "Maximum token budget for context loading."
+
+  context_manifest:
+    type: array
+    items:
+      type: string
+    description: "Explicit list of files to load for the current step."
+
+  agents:
+    type: object
+    additionalProperties:
+      type: object
+      properties:
+        provider:
+          type: string
+          enum: ["claude", "openrouter"]
+        model:
+          type: string
+        model_floor:
+          type: object
+          additionalProperties:
+            type: string
+          description: "Level-specific minimum model tiers."
+        active:
+          type: boolean
+        tool_use:
+          type: boolean
+      required:
+        - model
+        - active
+    description: "Agent configurations keyed by agent role name."
+
+  nodes:
+    type: object
+    additionalProperties:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: ["pending", "in_progress", "complete", "stale"]
+        last_updated:
+          type: string
+          format: date-time
+      required:
+        - status
+    description: "Status of each node in the pipeline grid."
+
+  mob_config:
+    type: object
+    properties:
+      max_rounds:
+        type: integer
+        minimum: 1
+        default: 3
+      budget_cap_usd:
+        type: number
+        minimum: 0
+        default: 1.0
+      diminishing_return_threshold:
+        type: integer
+        minimum: 0
+        default: 0
+        description: "Number of accepted deltas below which to prompt for commit."
+    description: "MOE mob termination governance."
+
+  reproducibility:
+    type: object
+    properties:
+      context_manifest_hash:
+        type: string
+      canon_version:
+        type: integer
+      agent_config:
+        type: object
+
+additionalProperties: false

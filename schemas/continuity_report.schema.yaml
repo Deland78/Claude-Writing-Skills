@@ -1,0 +1,90 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "continuity_report/v1"
+title: Continuity Report
+description: Result of a continuity check against canon relationships and timeline.
+
+type: object
+required:
+  - check_type
+  - entities_checked
+  - passes
+  - flags
+
+properties:
+  check_type:
+    type: string
+    enum: ["lightweight", "deep"]
+    description: "Lightweight = entity extraction + lookup only. Deep = semantic + timeline validation."
+  artifact:
+    type: string
+    description: "Path to the artifact that was checked."
+  entities_checked:
+    type: array
+    items:
+      type: string
+    description: "Entity IDs that were resolved and checked."
+  passes:
+    type: array
+    items:
+      type: object
+      required:
+        - entity
+        - check
+        - status
+      properties:
+        entity:
+          type: string
+        check:
+          type: string
+        status:
+          type: string
+          const: "pass"
+        evidence:
+          type: string
+    description: "Checks that passed."
+  flags:
+    type: array
+    items:
+      type: object
+      required:
+        - entity
+        - check
+        - status
+        - evidence
+        - severity
+      properties:
+        entity:
+          type: string
+        check:
+          type: string
+          description: "What was checked (e.g., 'relationship_consistency', 'timeline_order')."
+        status:
+          type: string
+          enum: ["warning", "violation"]
+        evidence:
+          type: string
+          description: "Specific evidence supporting the flag."
+        severity:
+          type: string
+          enum: ["low", "medium", "high"]
+        suggested_fix:
+          type: string
+    description: "Checks that flagged issues."
+  relationship_updates:
+    type: array
+    items:
+      type: object
+      required:
+        - action
+        - entity
+      properties:
+        action:
+          type: string
+          enum: ["add", "update", "supersede"]
+        entity:
+          type: string
+        details:
+          type: object
+    description: "Proposed relationship changes discovered during the check."
+
+additionalProperties: false

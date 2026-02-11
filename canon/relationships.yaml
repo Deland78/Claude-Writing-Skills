@@ -1,0 +1,9 @@
+rel_vocabulary:
+  positive: [trusts, loves, respects, allies_with, protects, depends_on]
+  negative: [distrusts, fears, hates, suspects, resents]
+  neutral: [knows, employs, related_to, located_at, possesses]
+  causal: [caused, prevented, enabled, discovered]
+
+entities: {}
+
+relationships: []

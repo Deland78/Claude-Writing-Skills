@@ -11,7 +11,7 @@ This repository contains the Fiction Writing Skills System, a Claude Code skill 
 
 ## Key Directories
 - `templates/`: Foundational templates for Bible, Characters, World, and Tracking.
-- `bible/`: Active story reference documents (Bible, World Rules, Scene Tracker).
+- `canon/`: Active story reference documents (Story Bible, World Rules, Timeline).
 - `characters/`: Detailed character profiles with Voice Profiles.
 - `.claude/commands/skills/`: Individual skill definitions.
 
@@ -23,9 +23,9 @@ This repository contains the Fiction Writing Skills System, a Claude Code skill 
 
 ## Foundation Setup
 Before drafting, ensure these are populated:
-1. `bible/story-bible.md` (from `templates/story-bible.template.md`)
-2. `bible/world-rules.md` (from `templates/world-rules.template.md`)
-3. `bible/scene-tracker.md` (from `templates/scene-tracker.template.md`)
+1. `canon/world/story-bible.md` (from `templates/story-bible.template.md`)
+2. `canon/world/world-rules.md` (from `templates/world-rules.template.md`)
+3. `canon/timeline.md` (from `templates/scene-tracker.template.md`)
 4. `characters/{name}.md` (from `templates/character-profile.template.md`)
 
 ## Writing Checklist

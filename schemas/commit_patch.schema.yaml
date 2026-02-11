@@ -1,0 +1,62 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "commit_patch/v1"
+title: Commit Patch
+description: Proposed changes to be committed to canon. Requires citation chains.
+
+type: object
+required:
+  - canon_changes
+  - relationship_changes
+  - citations
+
+properties:
+  canon_changes:
+    type: array
+    items:
+      type: object
+      required:
+        - file
+        - action
+      properties:
+        file:
+          type: string
+          pattern: "^canon/"
+          description: "Path to the canon file being changed."
+        action:
+          type: string
+          enum: ["create", "update", "delete"]
+        summary:
+          type: string
+          description: "Brief description of what changed."
+    description: "List of canon file mutations in this commit."
+  relationship_changes:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+        - field
+        - new_value
+      properties:
+        id:
+          type: string
+          description: "Relationship ID being modified, or 'new' for additions."
+        field:
+          type: string
+        new_value: {}
+        old_value: {}
+    description: "List of relationship mutations."
+  citations:
+    type: array
+    items:
+      type: string
+    minItems: 1
+    description: "Citation chain linking changes to canon artifacts. Must not be empty."
+  canon_version:
+    type: integer
+    description: "Canon version this patch was built against."
+  step:
+    type: string
+    description: "Step that produced this patch."
+
+additionalProperties: false

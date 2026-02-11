@@ -16,7 +16,7 @@ Ensure each major character's actions in the chapter reflect their beliefs, fear
 
 ### Inputs
 - **Required**: `chapter_draft`, `character_list`
-- **Optional**: `character_bible`
+- **Optional**: `character_profiles`
 
 ### Steps
 1. For each major character, identify: desire, fear, lie they tell themselves, protection, weakness.

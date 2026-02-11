@@ -1,0 +1,42 @@
+position:
+  level: L1
+  act: null
+  chapter: null
+  scene: null
+
+mode: manual
+
+canon_version: 1
+last_commit_hash: null
+
+max_context_tokens: 100000
+
+context_manifest: []
+
+agents:
+  lead_editor:
+    model: claude-haiku
+    active: true
+  plot_analyst:
+    model: claude-haiku
+    active: true
+  depth_partner:
+    model: claude-haiku
+    active: true
+  character_specialist:
+    model: claude-haiku
+    active: true
+  continuity_agent:
+    model: claude-haiku
+    active: true
+    tool_use: true
+  prose_crafter:
+    model: claude-haiku
+    active: false
+
+nodes: {}
+
+mob_config:
+  max_rounds: 3
+  budget_cap_usd: 1.0
+  diminishing_return_threshold: 0

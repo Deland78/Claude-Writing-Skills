@@ -8,6 +8,12 @@ desktop.ini
 *.bak
 ~$*
 
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
 # Gemini/Antigravity specific
 .gemini/
 antigravity/

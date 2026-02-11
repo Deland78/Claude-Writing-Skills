@@ -9,13 +9,13 @@ Validate continuity (facts, timeline, knowledge states) and add purposeful callb
 
 ## Usage
 ```
-/project:skills:continuity-callback {chapter_draft} {book_bible_or_notes}
+/project:skills:continuity-callback {chapter_draft} {canon_reference_docs}
 ```
 
 ## Process
 
 ### Inputs
-- **Required**: `chapter_draft`, `book_bible_or_notes`, `scene_tracker`
+- **Required**: `chapter_draft`, `canon_reference_docs`, `scene_tracker`
 - **Optional**: `prior_chapters_summary`
 
 ### Steps

@@ -1,0 +1,122 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "relationships/v1"
+title: Relationships
+description: >
+  Entity-relationship tracker with controlled vocabulary, temporal fields,
+  and supersession chains. The rel_vocabulary is project-configurable and
+  stored in the YAML file itself.
+
+type: object
+required:
+  - rel_vocabulary
+  - entities
+  - relationships
+
+properties:
+  rel_vocabulary:
+    type: object
+    required:
+      - positive
+      - negative
+      - neutral
+      - causal
+    properties:
+      positive:
+        type: array
+        items:
+          type: string
+      negative:
+        type: array
+        items:
+          type: string
+      neutral:
+        type: array
+        items:
+          type: string
+      causal:
+        type: array
+        items:
+          type: string
+    additionalProperties:
+      type: array
+      items:
+        type: string
+    description: "Controlled vocabulary categories. Each category is a list of allowed rel terms."
+
+  entities:
+    type: object
+    additionalProperties:
+      type: object
+      required:
+        - type
+        - aliases
+        - introduced
+      properties:
+        type:
+          type: string
+          enum: ["character", "location", "object", "faction", "concept"]
+        aliases:
+          type: array
+          items:
+            type: string
+          description: "All names/references for this entity."
+        introduced:
+          type: string
+          description: "Where this entity was first introduced (e.g., 'L1/concept', 'Act1/Ch2')."
+      additionalProperties: false
+    description: "Entity registry keyed by stable entity ID."
+
+  relationships:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+        - from
+        - to
+        - rel
+        - context
+        - valid_from
+        - confidence
+        - source
+      properties:
+        id:
+          type: string
+          pattern: "^rel_\\d+$"
+          description: "Unique relationship identifier (e.g., 'rel_001')."
+        from:
+          type: string
+          description: "Source entity ID."
+        to:
+          type: string
+          description: "Target entity ID."
+        rel:
+          type: string
+          description: "Relationship type. Must match a term in rel_vocabulary."
+        context:
+          type: string
+          description: "Brief narrative context for this relationship."
+        valid_from:
+          type: string
+          pattern: "^(L\\d+/\\w+|Act\\d+/Ch\\d+)$"
+          description: "Position where this relationship starts (e.g., 'Act1/Ch1')."
+        valid_to:
+          type: ["string", "null"]
+          pattern: "^(L\\d+/\\w+|Act\\d+/Ch\\d+)$"
+          description: "Position where this relationship ends. Null = still active."
+        confidence:
+          type: string
+          enum: ["low", "medium", "high"]
+        source:
+          type: string
+          pattern: "^canon/.+\\.md(#L\\d+)?$"
+          description: "Canon file reference supporting this relationship."
+        supersedes:
+          type: ["string", "null"]
+          description: "ID of the relationship this one replaces."
+        superseded_by:
+          type: ["string", "null"]
+          description: "ID of the relationship that replaced this one."
+      additionalProperties: false
+
+additionalProperties: false

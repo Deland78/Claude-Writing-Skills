@@ -1,0 +1,76 @@
+rel_vocabulary:
+  positive: [trusts, loves, respects, allies_with, protects, depends_on]
+  negative: [distrusts, fears, hates, suspects, resents]
+  neutral: [knows, employs, related_to, located_at, possesses]
+  causal: [caused, prevented, enabled, discovered]
+
+entities:
+  marcus:
+    type: character
+    aliases: ["Marcus", "Reeves", "the soldier"]
+    introduced: L1/concept
+  elena:
+    type: character
+    aliases: ["Elena", "Dr. Vasquez"]
+    introduced: L1/concept
+  zone_3:
+    type: location
+    aliases: ["Zone 3", "the dead zone", "exclusion area"]
+    introduced: Act1/Ch1
+
+relationships:
+  - id: rel_001
+    from: marcus
+    to: elena
+    rel: distrusts
+    context: "refuses her help at Zone perimeter"
+    valid_from: Act1/Ch1
+    valid_to: null
+    confidence: high
+    source: "canon/acts/act-1/ch1-outline.md#L23"
+    supersedes: null
+    superseded_by: null
+  - id: rel_002
+    from: marcus
+    to: zone_3
+    rel: fears
+    context: "first encounter with anomaly"
+    valid_from: Act1/Ch2
+    valid_to: null
+    confidence: medium
+    source: "canon/acts/act-1/ch2-outline.md#L5"
+    supersedes: null
+    superseded_by: null
+  - id: rel_003
+    from: elena
+    to: marcus
+    rel: respects
+    context: "recognizes his tactical instincts"
+    valid_from: Act1/Ch3
+    valid_to: null
+    confidence: medium
+    source: "canon/acts/act-1/ch3-outline.md#L10"
+    supersedes: null
+    superseded_by: null
+  - id: rel_004
+    from: marcus
+    to: elena
+    rel: trusts
+    context: "after she saved his life in Zone 3"
+    valid_from: Act2/Ch1
+    valid_to: null
+    confidence: high
+    source: "canon/acts/act-2/ch1-outline.md#L15"
+    supersedes: rel_001
+    superseded_by: null
+  - id: rel_005
+    from: marcus
+    to: zone_3
+    rel: fears
+    context: "pre-story background fear"
+    valid_from: Act1/Ch1
+    valid_to: Act1/Ch9
+    confidence: low
+    source: "canon/acts/act-1/ch1-outline.md#L2"
+    supersedes: null
+    superseded_by: null

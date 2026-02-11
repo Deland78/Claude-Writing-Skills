@@ -31,17 +31,58 @@ def count_markdown_files(path: Path) -> int:
     return sum(1 for p in path.iterdir() if p.is_file() and p.suffix.lower() == ".md")
 
 
+def check_no_bible_refs(root: Path) -> CheckResult:
+    """Check that no skill files or CLAUDE.md reference the old bible/ path."""
+    stale = []
+    # Check skills
+    skills_dir = root / ".claude" / "skills"
+    if skills_dir.exists():
+        for f in skills_dir.rglob("*.md"):
+            try:
+                if "bible/" in f.read_text(encoding="utf-8").lower():
+                    stale.append(str(f.relative_to(root)))
+            except (OSError, UnicodeDecodeError):
+                pass
+    # Check CLAUDE.md
+    claude_md = root / "CLAUDE.md"
+    if claude_md.exists():
+        try:
+            if "bible/" in claude_md.read_text(encoding="utf-8").lower():
+                stale.append("CLAUDE.md")
+        except (OSError, UnicodeDecodeError):
+            pass
+    if stale:
+        return CheckResult(False, f"FAIL: stale bible/ references in: {', '.join(stale)}")
+    return CheckResult(True, "PASS: no stale bible/ references found")
+
+
+def check_schemas(root: Path) -> CheckResult:
+    """Check that schema files exist in schemas/ directory."""
+    schemas_dir = root / "schemas"
+    if not schemas_dir.exists():
+        return CheckResult(False, "FAIL: schemas/ directory missing")
+    schema_files = list(schemas_dir.glob("*.schema.yaml"))
+    if len(schema_files) == 0:
+        return CheckResult(False, "FAIL: no .schema.yaml files found in schemas/")
+    return CheckResult(True, f"PASS: {len(schema_files)} schema files in schemas/")
+
+
 def run_checks(root: Path, min_style_samples: int) -> list[CheckResult]:
     canon = root / "canon"
     results = [
         check_exists(canon / "index.md", "Canon index"),
         check_exists(canon / "timeline.md", "Canon timeline"),
         check_exists(canon / "preferences.md", "Preference log"),
+        check_exists(canon / "relationships.yaml", "Relationships registry"),
         check_exists(canon / "characters", "Character directory"),
         check_exists(canon / "world", "World directory"),
         check_exists(canon / "tech", "Tech directory"),
         check_exists(canon / "themes", "Theme directory"),
         check_exists(canon / "style-samples", "Style samples directory"),
+        check_exists(canon / "acts", "Acts directory"),
+        check_exists(root / ".pipeline-state.yaml", "Pipeline state"),
+        check_schemas(root),
+        check_no_bible_refs(root),
     ]
 
     sample_dir = canon / "style-samples"

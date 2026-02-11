@@ -1,0 +1,51 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "node_input/v1"
+title: Node Input
+description: Context and instructions going into a skill or agent call.
+
+type: object
+required:
+  - step
+  - level
+  - context_files
+  - instructions
+
+properties:
+  step:
+    type: string
+    description: "Step identifier (e.g., 'act1-outline', 'ch2-scene1-draft')."
+  level:
+    type: string
+    enum: ["L1", "L2", "L3", "L4", "L5"]
+    description: "Hierarchy level: L1=concept, L2=arc, L3=act, L4=chapter, L5=scene."
+  position:
+    type: object
+    properties:
+      act:
+        type: ["integer", "null"]
+      chapter:
+        type: ["integer", "null"]
+      scene:
+        type: ["integer", "null"]
+  context_files:
+    type: array
+    items:
+      type: string
+    description: "List of file paths loaded as context for this call."
+    minItems: 1
+  instructions:
+    type: string
+    description: "The structured instruction or prompt for the agent."
+    minLength: 1
+  mode:
+    type: string
+    enum: ["manual", "mob"]
+    default: "manual"
+  canon_version:
+    type: integer
+    description: "Canon version at time of call, for reproducibility."
+  context_manifest_hash:
+    type: string
+    description: "Hash of the context manifest for reproducibility."
+
+additionalProperties: false

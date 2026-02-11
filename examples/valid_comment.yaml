@@ -1,0 +1,10 @@
+agent: plot_analyst
+model: claude-haiku
+comment: "Ch3 feels like a stall — no value shift between the opening and closing beats."
+citations:
+  - "canon/acts/act-1/ch3-outline.md#L12"
+suggested_changes:
+  - file: "canon/acts/act-1/ch3-outline.md"
+    description: "Add a turning point that shifts Marcus from passive observation to active resistance."
+    line_range: "L12-L18"
+resolution: null

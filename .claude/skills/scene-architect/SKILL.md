@@ -16,7 +16,7 @@ Convert chapter promise + tension map into structured scene cards with goal, obs
 
 ### Inputs
 - **Required**: `chapter_promise_output`, `tension_map_output`
-- **Optional**: `character_bible`, `setting_notes`
+- **Optional**: `character_profiles`, `setting_notes`
 
 ### Steps
 1. Generate 3-7 scene cards.
