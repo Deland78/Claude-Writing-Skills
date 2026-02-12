@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"SESSION STATE SAVE REQUIRED: Before compaction proceeds, update canon/session-state.md with current pipeline position, mob session status, all story decisions made this session, open questions, and next step. Do this NOW before context is lost.\""
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -49,6 +49,23 @@ Before drafting, ensure these are populated:
 - `canon/characters/{name}.md` (from `templates/character-profile.template.md`)
 - `.pipeline-state.yaml` — pipeline position and agent configuration
 
+## Session State Management
+
+**CRITICAL**: Before `/clear` or `/compact` (manual or auto), you MUST save session state to `canon/session-state.md`. This is non-negotiable — conversation context is destroyed by these commands.
+
+The session state file must include:
+1. **Pipeline position** — current level, act, and what's completed
+2. **Mob session status** — which phase, which agents have commented, resolutions
+3. **All deltas applied** — every change made to canon files this session, with specifics
+4. **Story decisions** — all decisions made across all sessions (cumulative)
+5. **Open questions** — from story-arc.md and any raised during discussion
+6. **Git state** — latest commit hash, branch, any uncommitted changes
+7. **Next step** — exactly what to do when resuming
+
+When the user says "continue" at the start of a new session, read `canon/session-state.md` and resume from where it left off.
+
+A `PreCompact` hook in `.claude/settings.json` will remind you before auto/manual compaction. There is no pre-clear hook — you must save when the user mentions `/clear`.
+
 ## Writing Checklist
 - [ ] POV character's internal voice matches their profile
 - [ ] No forbidden vocabulary (delve, multifaceted, etc.)
