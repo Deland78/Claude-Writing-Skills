@@ -1,0 +1,75 @@
+{
+  "step": "story-concept",
+  "level": "L1",
+  "mode": "mob",
+  "timestamp": "2026-02-11T00:00:00Z",
+  "model_config": {
+    "lead_editor": "claude-opus-4-6",
+    "plot_analyst": "claude-opus-4-6",
+    "character_specialist": "claude-opus-4-6",
+    "depth_partner": "claude-opus-4-6"
+  },
+  "context_loaded": [
+    {"file": "canon/story-concept.md", "tokens": null},
+    {"file": "canon/preferences.md", "tokens": null},
+    {"file": "canon/relationships.yaml", "tokens": null},
+    {"file": ".pipeline-state.yaml", "tokens": null},
+    {"file": "Story-Inputs.md", "tokens": null}
+  ],
+  "phases": {
+    "structure": {
+      "human_input": "Review existing L1 story concept artifact",
+      "lead_editor_output": "All template sections populated, no structural gaps",
+      "human_accepted": true,
+      "adjustments": ""
+    },
+    "comments": [
+      {
+        "agent": "Plot Analyst",
+        "model": "claude-opus-4-6",
+        "comment": "Dual engine (mystery + faith crisis) must share one causal chain or one starves at 20K words. Mystery-thriller should be A-plot with escalating external clock; faith crisis rides the same chain.",
+        "citations": ["canon/story-concept.md#L18", "canon/story-concept.md#L28"],
+        "citation_status": "valid",
+        "resolution": "accepted",
+        "human_note": "Mystery-thriller takes A-plot priority when engines compete"
+      },
+      {
+        "agent": "Character Specialist",
+        "model": "claude-opus-4-6",
+        "comment": "Joe's tech illiteracy is an investigative asset, not a handicap. Investigation should be pastoral (kitchen-table listening, combat behavioral reads, theological reading of crime scene symbolism).",
+        "citations": ["canon/story-concept.md#L33", "canon/story-concept.md#L22"],
+        "citation_status": "valid",
+        "resolution": "accepted",
+        "human_note": ""
+      },
+      {
+        "agent": "Depth Partner",
+        "model": "claude-opus-4-6",
+        "comment": "Crime scene is a crucifixion tableau (robe, wood, Jerusalem, public display). Parallel must be acknowledged as deliberate thematic element for arc to handle.",
+        "citations": ["canon/story-concept.md#L5", "canon/story-concept.md#L14", "canon/story-concept.md#L24"],
+        "citation_status": "valid",
+        "resolution": "accepted",
+        "human_note": "Three readings: recapitulation, divine judgment, or satanic/demonic mockery. Controlling idea revised. Joe's faith statement added: God reveals himself in the grace given to persevere through suffering and sacrifice."
+      }
+    ],
+    "commit": {
+      "artifact_file": "canon/story-concept.md",
+      "relationships_added": 0,
+      "relationships_changed": 0
+    }
+  },
+  "cost": {
+    "by_agent": {},
+    "total_usd": 0.0
+  },
+  "reproducibility": {
+    "context_manifest_hash": null,
+    "canon_version": 1,
+    "agent_config": {
+      "lead_editor": {"model": "claude-opus-4-6", "active": true},
+      "plot_analyst": {"model": "claude-opus-4-6", "active": true},
+      "character_specialist": {"model": "claude-opus-4-6", "active": true},
+      "depth_partner": {"model": "claude-opus-4-6", "active": true}
+    }
+  }
+}
