@@ -66,6 +66,31 @@ When the user says "continue" at the start of a new session, read `canon/session
 
 A `PreCompact` hook in `.claude/settings.json` will remind you before auto/manual compaction. There is no pre-clear hook — you must save when the user mentions `/clear`.
 
+## Commit, Compact, and Clear Guidelines
+
+### When to suggest a commit (mid-phase)
+- After applying a revised agent comment that required multiple file edits (checkpoint before next agent)
+- After each mob session agent if the changes were substantial (3+ edits)
+- After the user provides major new story material that gets applied to canon files
+- After completing any full pipeline step (skill execution)
+- Before `/clear` or `/compact` — always commit first
+
+A `PostToolUse` hook on Bash will remind you to ask the user about pushing after every commit.
+
+### When to suggest compact or clear (phase boundaries only)
+- After completing a mob session (Phase 4 commit)
+- After completing a full pipeline step and its review (e.g., arc + mob session done)
+- When conversation has accumulated many exchanges with substantial back-and-forth
+- **Never mid-phase** — context continuity within a phase is critical
+
+A `PostToolUse` hook on Bash will remind you to suggest compact/clear after pushes when appropriate.
+
+### When NOT to suggest compact or clear
+- In the middle of a mob session Phase 2 (agents still commenting)
+- While applying user revisions to canon files
+- During active back-and-forth discussion about story decisions
+- When uncommitted changes exist
+
 ## Writing Checklist
 - [ ] POV character's internal voice matches their profile
 - [ ] No forbidden vocabulary (delve, multifaceted, etc.)
