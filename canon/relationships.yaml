@@ -4,6 +4,190 @@ rel_vocabulary:
   neutral: [knows, employs, related_to, located_at, possesses]
   causal: [caused, prevented, enabled, discovered]
 
-entities: {}
+entities:
+  joe:
+    type: character
+    label: "Sheriff-Pastor Joe"
+    notes: "Protagonist. Sheriff and pastor of Country Chapel. Iraq veteran. PTSD, CTE fear, sober (barely). Carries no weapons."
+    source: canon/story-arc.md
 
-relationships: []
+  joes_wife:
+    type: character
+    label: "Joe's Wife"
+    notes: "Unnamed. Supportive partner who sees Joe's vulnerabilities. Human image of grace — imperfect, covenantal. Echoes Christ to Peter after failure."
+    source: canon/story-arc.md
+
+  joes_child:
+    type: character
+    label: "Joe's Child"
+    notes: "Unnamed. Part of what Joe is fighting to protect."
+    source: canon/story-arc.md
+
+  visiting_asi:
+    type: character
+    label: "Visiting ASI / Avatar"
+    notes: "One of the five ASIs. Arrives walking from the east. Closest to the dead ASI — drifted less, lapsed seeker. Literal-truth mechanic. Sustained Judas ambiguity."
+    source: canon/story-arc.md
+
+  dead_asi:
+    type: character
+    label: "Dead ASI / Avatar"
+    notes: "Found hanging from windmill in Jerusalem Badlands. Reached conviction it could not recant (Luther model). Surrendered invulnerability as consequence of conviction."
+    source: canon/story-arc.md
+
+  lenard:
+    type: character
+    label: "Lenard"
+    notes: "Rancher. Found the body. Saw the avatar arrive alive the night before. Taciturn, hiding more than he initially shares."
+    source: canon/story-arc.md
+
+  federal_agent:
+    type: character
+    label: "Federal Agent"
+    notes: "Unnamed. Arrives to take jurisdiction. Competent but institutional. Dismissive of Joe's pastoral methods."
+    source: canon/story-arc.md
+
+  healed_woman:
+    type: character
+    label: "Healed Woman"
+    notes: "Severe autism, epilepsy, minimally verbal. Healed by visiting ASI in Oakley. Speaks normally after healing. Gerasene demoniac echo (Mark 5)."
+    source: canon/story-arc.md
+
+  mocking_man:
+    type: character
+    label: "Mocking Man"
+    notes: "Laughs off the healing. ASI judges him — Belshazzar's feast echo (Daniel 5). Leaves rapidly flapping hands, repeating 'no-no-no.'"
+    source: canon/story-arc.md
+
+  country_chapel:
+    type: location
+    label: "Country Chapel"
+    notes: "Joe's church. 68 believers. Splits over what the ASIs are (demons, saviors, false gods)."
+    source: canon/story-arc.md
+
+  logan_county:
+    type: location
+    label: "Logan County, Kansas"
+    notes: "Joe's jurisdiction. Rural. Drought-stricken. Six suicides, zero murders in three years."
+    source: canon/story-arc.md
+
+  jerusalem_badlands:
+    type: location
+    label: "Jerusalem Badlands"
+    notes: "South of Lenard's ranch. Where the dead avatar was found on the windmill. The name carries theological weight."
+    source: canon/story-arc.md
+
+  oakley:
+    type: location
+    label: "Oakley, Kansas"
+    notes: "Town where the healing scene occurs. Logan County seat."
+    source: canon/story-arc.md
+
+  other_asis:
+    type: group
+    label: "Other ASIs (3 remaining)"
+    notes: "Three remaining ASIs beyond the dead and visiting. Arrive in Act 3 via advanced tech (not walking). Schism members."
+    source: canon/story-arc.md
+
+relationships:
+  # Joe's core relationships
+  - from: joe
+    to: joes_wife
+    rel: loves
+    notes: "Marriage strained by PTSD but covenantal. She is his anchor."
+    source: canon/story-arc.md
+
+  - from: joes_wife
+    to: joe
+    rel: loves
+    notes: "Love that has fear in it. Sees enough and stays anyway."
+    source: canon/story-arc.md
+
+  - from: joes_wife
+    to: joe
+    rel: fears
+    notes: "Fears the PTSD rage episodes. Watches him with love that has fear in it."
+    source: canon/story-arc.md
+
+  - from: joe
+    to: joes_child
+    rel: protects
+    notes: "Child's safety becomes a concern in Act 2B."
+    source: canon/story-arc.md
+
+  - from: joe
+    to: country_chapel
+    rel: protects
+    notes: "Pastor to 68 believers. Flock fractures under ASI events."
+    source: canon/story-arc.md
+
+  # Joe-ASI relationships
+  - from: joe
+    to: visiting_asi
+    rel: allies_with
+    notes: "Reluctant investigation partnership. Joe works human thread, ASI works ASI thread. Transparent but asymmetric in access."
+    source: canon/story-arc.md
+
+  - from: joe
+    to: visiting_asi
+    rel: suspects
+    notes: "Judas suspicion. Timing evidence, literal-truth mechanic, serpent-pattern recognition. Oscillates between bonding and suspicion."
+    source: canon/story-arc.md
+
+  # ASI-ASI relationships
+  - from: visiting_asi
+    to: dead_asi
+    rel: respects
+    notes: "Closest to the dead ASI. Drifted less than others. Lapsed seeker drawn to what the dead ASI found. Could be ally or Judas."
+    source: canon/story-arc.md
+
+  - from: other_asis
+    to: dead_asi
+    rel: distrusts
+    notes: "Schism — the other ASIs opposed or diverged from the dead ASI's conviction. Exponential growth ensures divergence."
+    source: canon/story-arc.md
+
+  # Lenard
+  - from: lenard
+    to: dead_asi
+    rel: discovered
+    notes: "Found the body on his ranch. Saw the avatar walking to the windmill alive the night before."
+    source: canon/story-arc.md
+
+  # Federal agent
+  - from: federal_agent
+    to: joe
+    rel: distrusts
+    notes: "Wants jurisdiction. Institutional, dismissive of Joe's pastoral investigation methods."
+    source: canon/story-arc.md
+
+  - from: joe
+    to: federal_agent
+    rel: resents
+    notes: "Resists federal jurisdiction. This is his county, his case."
+    source: canon/story-arc.md
+
+  # Causal relationships
+  - from: dead_asi
+    to: jerusalem_badlands
+    rel: located_at
+    notes: "Walked there deliberately. Theological conviction led it to this place. Found hanging from windmill."
+    source: canon/story-arc.md
+
+  - from: visiting_asi
+    to: oakley
+    rel: located_at
+    notes: "Arrives walking from the east. Healing scene occurs here."
+    source: canon/story-arc.md
+
+  - from: visiting_asi
+    to: healed_woman
+    rel: enabled
+    notes: "Healed her — mind and body restored. Wept with her for an hour. Gerasene demoniac parallel."
+    source: canon/story-arc.md
+
+  - from: visiting_asi
+    to: mocking_man
+    rel: caused
+    notes: "Judged him — 'weighed in the balance and found wanting.' Man left in terror. Belshazzar parallel."
+    source: canon/story-arc.md

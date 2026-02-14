@@ -10,7 +10,7 @@ This file is the single canonical registry for the AI co-author system.
 - `world/`
 - `acts/`
 - `tech/`
-- `themes/`
+- `themes/` — active: `deep-structure.md` (cross-cutting thematic architecture: shame/grace framework, three-kinds-of-knowing, emotional engine, prose implications)
 - `style-samples/`
 
 ## Change Log

@@ -74,6 +74,14 @@ def get_manifest(state: dict[str, Any], root: Path) -> list[str]:
     # L2+: add story concept
     _add_if_exists(files, root, "canon/story-concept.md")
 
+    # L2+: add thematic architecture files
+    themes_dir = root / "canon" / "themes"
+    if themes_dir.exists():
+        for f in sorted(themes_dir.glob("*.md")):
+            if f.name == "README.md":
+                continue
+            _add_if_exists(files, root, f"canon/themes/{f.name}")
+
     if level == "L2":
         return files
 

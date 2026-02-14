@@ -8,8 +8,10 @@ The mystery and the faith crisis share a single causal chain: each clue Joe unco
 
 ## Genre
 
-- **Primary Genre**: Science Fiction Thriller
-- **Secondary Genre(s)**: Mystery, Philosophical Fiction
+- **Primary Genre**: Philosophical Fiction (speculative literary fiction — the genre Ted Chiang writes in)
+- **Secondary Genre(s)**: Mystery, Science Fiction
+- **Comparables**: Chiang's "Story of Your Life" (speculative premise as philosophical inquiry); Marilynne Robinson's *Gilead* (a pastor meditating on grace); Flannery O'Connor (violence and grace colliding in the rural South); Shusaku Endo's *Silence* (a priest's faith tested to breaking)
+- **Genre note**: The investigation provides structure and forward momentum — the reader turns pages because they want to know what happened. But what they discover is not a forensic answer. It is a truth about faith, grace, and what it means to be known. The investigation is the vehicle. Grace is the destination.
 
 ## Controlling Idea
 

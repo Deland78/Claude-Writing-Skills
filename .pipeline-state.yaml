@@ -6,12 +6,16 @@ position:
 
 mode: manual
 
-canon_version: 1
-last_commit_hash: null
+canon_version: 2
+last_commit_hash: 7a62d21
 
 max_context_tokens: 100000
 
-context_manifest: []
+context_manifest:
+  - canon/story-concept.md
+  - canon/story-arc.md
+  - canon/world/world-rules.md
+  - canon/relationships.yaml
 
 agents:
   lead_editor:
