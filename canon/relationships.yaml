@@ -38,8 +38,32 @@ entities:
   lenard:
     type: character
     label: "Lenard"
-    notes: "Rancher. Found the body. Saw the avatar arrive alive the night before. Taciturn, hiding more than he initially shares."
-    source: canon/story-arc.md
+    notes: "Rancher. Found the body on his property. Former regular at Country Chapel — stopped attending after wife died of cancer two years ago. Blames ASIs for her death (conspiracy: population reduction). Anti-ASI views are public knowledge (Hungry Farmer diner rants). Suspect by proximity and motive. NOT actually HFF. Afraid for his son LJ. His plea to Joe: protect LJ from federal disappearance."
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
+
+  lj:
+    type: character
+    label: "LJ (Lenard Junior)"
+    notes: "Lenard's son. Wannabe HFF (not official). Vandalized a wind farm with friends (believe it powers ASI data centers). Joe suspected but had no evidence until Lenard confirmed. Person of interest near a dead avatar. Lenard insists he didn't kill the avatar."
+    source: canon/acts/act-1-outline.md
+
+  lenards_wife:
+    type: character
+    label: "Lenard's Wife (deceased)"
+    notes: "Died of cancer two years before the story. Her death drove Lenard away from church and toward anti-ASI conspiracy theories. Former regular at Country Chapel."
+    source: canon/acts/act-1-outline.md
+
+  hff:
+    type: group
+    label: "HFF (Human Freedom Fighters)"
+    notes: "Militant anti-ASI group. LJ and friends are wannabe members, not official. Feds treat any HFF connection near a dead avatar as national security threat."
+    source: canon/acts/act-1-outline.md
+
+  hungry_farmer:
+    type: location
+    label: "Hungry Farmer Diner"
+    notes: "Local gathering place for farmers in Oakley. Where Lenard's anti-ASI views are publicly known."
+    source: canon/acts/act-1-outline.md
 
   federal_agent:
     type: character
@@ -153,12 +177,36 @@ relationships:
     notes: "Schism — the other ASIs opposed or diverged from the dead ASI's conviction. Exponential growth ensures divergence."
     source: canon/story-arc.md
 
-  # Lenard
+  # Lenard family
   - from: lenard
     to: dead_asi
     rel: discovered
-    notes: "Found the body on his ranch. Saw the avatar walking to the windmill alive the night before."
-    source: canon/story-arc.md
+    notes: "Found the body on his ranch. Called Joe at 5:30 AM. Anti-ASI views make him a suspect by proximity and motive."
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
+
+  - from: lenard
+    to: lj
+    rel: protects
+    notes: "Begged Joe to keep LJ's name out of the investigation. 'He's all I've got left.' Confirmed LJ's wind farm vandalism to Joe."
+    source: canon/acts/act-1-outline.md
+
+  - from: lenard
+    to: lenards_wife
+    rel: loves
+    notes: "Wife died of cancer two years ago. Her death drove him from church and into anti-ASI conspiracy. She is his open wound."
+    source: canon/acts/act-1-outline.md
+
+  - from: lj
+    to: hff
+    rel: allies_with
+    notes: "Wannabe member, not official. Vandalized wind farm with friends. Believes wind farms power ASI data centers."
+    source: canon/acts/act-1-outline.md
+
+  - from: joe
+    to: lj
+    rel: protects
+    notes: "Joe chose to shield LJ from the feds after Lenard's plea. Pastor protecting a grieving father's son over sheriff's duty to report a suspect."
+    source: canon/acts/act-1-outline.md
 
   # Federal agent
   - from: federal_agent
@@ -170,8 +218,8 @@ relationships:
   - from: joe
     to: federal_agent
     rel: resents
-    notes: "Resists federal jurisdiction. This is his county, his case."
-    source: canon/story-arc.md
+    notes: "Resists federal jurisdiction. This is his county, his case. Also: if feds get to Lenard, they find LJ, and LJ disappears."
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
 
   # Brian (brother-in-law)
   - from: brian
