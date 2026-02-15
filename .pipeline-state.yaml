@@ -6,7 +6,7 @@ position:
 
 mode: manual
 
-canon_version: 2
+canon_version: 3
 last_commit_hash: 7a62d21
 
 max_context_tokens: 100000

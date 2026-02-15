@@ -8,14 +8,14 @@ entities:
   joe:
     type: character
     label: "Sheriff-Pastor Joe"
-    notes: "Protagonist. Sheriff and pastor of Country Chapel. Iraq veteran. PTSD, CTE fear, sober (barely). Carries no weapons."
-    source: canon/story-arc.md
+    notes: "Protagonist. Sheriff and pastor of Country Chapel. Iraq veteran. PTSD, CTE fear, sober (barely). Carries no weapons. Pre-conversion: fights and arrests in Salina — the man buried by baptism. Escalation pattern before story: self → friend → wife → Brian. Oxycodone pills from traffic stop last week (live temptation). Faith statement: 'God reveals himself in the grace given to persevere through suffering and sacrifice.'"
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
 
   joes_wife:
     type: character
     label: "Joe's Wife"
-    notes: "Unnamed. Supportive partner who sees Joe's vulnerabilities. Human image of grace — imperfect, covenantal. Echoes Christ to Peter after failure."
-    source: canon/story-arc.md
+    notes: "Unnamed. Brian's twin sister. Saw Joe change in Salina before he asked her out. Said 'no' for months, watched him closely, finally said yes. Never had reason to fear him until last week's outburst. Fears for Joe (old man returning) not of him. Punched Brian once herself, freshman year at Oakley High. More mature Christian now. Human image of grace — imperfect, covenantal."
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
 
   joes_child:
     type: character
@@ -83,10 +83,10 @@ entities:
     notes: "Town where the healing scene occurs. Logan County seat."
     source: canon/story-arc.md
 
-  brother_in_law:
+  brian:
     type: character
-    label: "Brother-in-Law (Joe's wife's brother)"
-    notes: "Unnamed. Family black sheep. Bully who mocks Joe's pastorate, disrespects his badge. Joe practiced 'love your enemies' with him for years. Rage victim in Act 1 Ch 2."
+    label: "Brian (Joe's wife's twin brother)"
+    notes: "Named. Family black sheep. Bully who has always known how to push people to the edge and over. Joe practiced 'love your enemies' with him for years — insults bounced off. Joe punched Brian, broke his nose (Act 1 Ch 2). Joe's wife punched Brian once, freshman year at Oakley High. Brian's fear of Joe after the punch becomes a thread."
     source: canon/acts/act-1-outline.md
 
   other_asis:
@@ -112,8 +112,8 @@ relationships:
   - from: joes_wife
     to: joe
     rel: fears
-    notes: "Fears the PTSD rage episodes. Watches him with love that has fear in it."
-    source: canon/story-arc.md
+    notes: "Fears FOR Joe, not OF him. Fears the old man buried by baptism is resurfacing. Escalation pattern: self → friend → her → Brian. Fears drugs/alcohol could be next. Saw the change in Salina, said no for months until she saw it hold."
+    source: canon/story-arc.md, canon/acts/act-1-outline.md
 
   - from: joe
     to: joes_child
@@ -173,29 +173,29 @@ relationships:
     notes: "Resists federal jurisdiction. This is his county, his case."
     source: canon/story-arc.md
 
-  # Brother-in-law
-  - from: brother_in_law
+  # Brian (brother-in-law)
+  - from: brian
     to: joe
     rel: resents
-    notes: "Has always mocked Joe's pastorate, disrespected his badge. Family black sheep. Bully."
+    notes: "Has always mocked Joe's pastorate, disrespected his badge. Knows how to push people to the edge and over. Family black sheep."
     source: canon/acts/act-1-outline.md
 
   - from: joe
-    to: brother_in_law
+    to: brian
     rel: protects
-    notes: "Joe practiced 'love your enemies' with him for years. Turned the other cheek. Discipline broken in Act 1 rage episode."
+    notes: "Joe practiced 'love your enemies' with Brian for years. Insults bounced off. Discipline broken July 4 — Joe punched Brian, broke his nose."
     source: canon/acts/act-1-outline.md
 
-  - from: brother_in_law
+  - from: brian
     to: joe
     rel: fears
-    notes: "After the rage episode — a bully who discovered what it feels like. This fear persists."
+    notes: "After the punch — a bully who discovered what it feels like. This fear persists."
     source: canon/acts/act-1-outline.md
 
-  - from: brother_in_law
+  - from: brian
     to: joes_wife
     rel: related_to
-    notes: "Her brother. Black sheep of her family."
+    notes: "Twin siblings. She punched him once, freshman year at Oakley High."
     source: canon/acts/act-1-outline.md
 
   # Causal relationships
