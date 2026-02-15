@@ -83,6 +83,12 @@ entities:
     notes: "Town where the healing scene occurs. Logan County seat."
     source: canon/story-arc.md
 
+  brother_in_law:
+    type: character
+    label: "Brother-in-Law (Joe's wife's brother)"
+    notes: "Unnamed. Family black sheep. Bully who mocks Joe's pastorate, disrespects his badge. Joe practiced 'love your enemies' with him for years. Rage victim in Act 1 Ch 2."
+    source: canon/acts/act-1-outline.md
+
   other_asis:
     type: group
     label: "Other ASIs (3 remaining)"
@@ -166,6 +172,31 @@ relationships:
     rel: resents
     notes: "Resists federal jurisdiction. This is his county, his case."
     source: canon/story-arc.md
+
+  # Brother-in-law
+  - from: brother_in_law
+    to: joe
+    rel: resents
+    notes: "Has always mocked Joe's pastorate, disrespected his badge. Family black sheep. Bully."
+    source: canon/acts/act-1-outline.md
+
+  - from: joe
+    to: brother_in_law
+    rel: protects
+    notes: "Joe practiced 'love your enemies' with him for years. Turned the other cheek. Discipline broken in Act 1 rage episode."
+    source: canon/acts/act-1-outline.md
+
+  - from: brother_in_law
+    to: joe
+    rel: fears
+    notes: "After the rage episode — a bully who discovered what it feels like. This fear persists."
+    source: canon/acts/act-1-outline.md
+
+  - from: brother_in_law
+    to: joes_wife
+    rel: related_to
+    notes: "Her brother. Black sheep of her family."
+    source: canon/acts/act-1-outline.md
 
   # Causal relationships
   - from: dead_asi

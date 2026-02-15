@@ -1,0 +1,464 @@
+migration: bible_to_canon
+timestamp: '2026-02-11T01:54:40.204666+00:00'
+files:
+- path: bible\story-bible.md
+  existed: true
+  content: "# Story Bible: {Title}\r\n\r\n## Premise (Story Concept)\r\n<!-- One paragraph\
+    \ describing your story. What happens? Who is it about? What's at stake? -->\r\
+    \n\r\n## Genre\r\n- **Primary Genre**: <!-- thriller, romance, sci-fi, fantasy,\
+    \ literary, mystery, horror, etc. -->\r\n- **Secondary Genre(s)**: \r\n\r\n##\
+    \ Target Length\r\n- **Total Word Count Target**: <!-- e.g., 80,000 words -->\r\
+    \n- **Chapter Count Target**: \r\n\r\n## Controlling Idea\r\n<!-- One sentence\
+    \ that expresses the theme/argument of your story.\r\nFormat: [Value] is achieved/lost\
+    \ when [condition].\r\n-->\r\n\r\n## Thematic Question\r\n<!-- The question your\
+    \ story explores. -->\r\n\r\n## Point of View\r\n- **POV Type**: \r\n- **Protagonist\
+    \ Name**: \r\n- **Other POV Character(s)**: \r\n\r\n## Setting\r\n- **Time Period**:\
+    \ \r\n- **Primary Location(s)**: \r\n- **Technology Level**: \r\n\r\n## Story\
+    \ Structure (High Level)\r\n### Beginning Hook (0-25%)\r\n- **Opening Situation**:\
+    \ <!-- The status quo at the start of the book -->\r\n- **Inciting Incident**:\
+    \ <!-- The specific event that disrupts the status quo -->\r\n- **Setup Description**:\
+    \ \r\n\r\n### Middle Build (25-75%)  \r\n### Ending Payoff (75-100%)\r\n\r\n##\
+    \ Timeline\r\n### Backstory\r\n| When | What Happened | Who Involved | Impact\
+    \ |\r\n| ---- | ------------- | ------------ | ------ |\r\n|      |          \
+    \     |              |        |\r\n\r\n### Story Timeline\r\n| Scene/Chapter |\
+    \ When | What Happens | Key Changes |\r\n| ------------- | ---- | ------------\
+    \ | ----------- |\r\n|               |      |              |             |\r\n"
+- path: canon\world\story-bible.md
+  existed: false
+  content: null
+- path: bible\world-rules.md
+  existed: true
+  content: "# World Rules\r\n\r\n## Hard Constraints [NEVER VIOLATE]\r\n- [ ] \r\n\
+    - [ ] \r\n- [ ] \r\n\r\n## Geography\r\n- **Primary Locations**: \r\n- **Travel\
+    \ Times/Methods**: \r\n\r\n## Social Rules\r\n- **Power Structures**: \r\n- **Taboos**:\
+    \ \r\n- **Conflict Resolution**: \r\n\r\n## Magic / Technology Systems\r\n- **Limits**:\
+    \ \r\n- **Costs**: \r\n- **Common Applications**: \r\n"
+- path: canon\world\world-rules.md
+  existed: false
+  content: null
+- path: bible\scene-tracker.md
+  existed: true
+  content: "# Scene Tracker\r\n\r\n| Scene | POV | Characters Present | Knowledge\
+    \ Changes | Objects Gained/Lost | Relationship Shifts | Physical/Emotional Changes\
+    \ |\r\n| ----- | --- | ------------------ | ----------------- | -------------------\
+    \ | ------------------- | -------------------------- |\r\n|       |     |    \
+    \                |                   |                     |                 \
+    \    |                            |\r\n|       |     |                    |  \
+    \                 |                     |                     |              \
+    \              |\r\n|       |     |                    |                   | \
+    \                    |                     |                            |\r\n"
+- path: canon\timeline.md
+  existed: true
+  content: "# Canon Timeline\r\n\r\nTrack immutable event ordering and timestamps\
+    \ for continuity checks.\r\n"
+- path: canon\Entity-relationship-matrix.md
+  existed: true
+  content: "# Entity Relationship Matrix\r\n\r\n## How to Use This Matrix\r\n- **Rows**\
+    \ = Entities (e.g.,Character, Object,...) which is observing/thinking/acting/changing\r\
+    \n- **Columns** = Character being observed/thought about, Location from/to/knowledge\
+    \ of, Object possessed/desired/etc, Fact (secret/skill), Entity (anything)  \r\
+    \n- Update/add info in intersecting cell when a relationship is indicated between\
+    \ Characters or  or when relationship changes, (e.g. Gollum possessed Ring > Gollumn\
+    \ lost Ring > Bilbo obtained ring)\r\n- Preserve existing information (append,\
+    \ don't replace)\r\n\r\n## Matrix\r\n\r\n| From ↓ / About → | Character A | Character\
+    \ B | Character C | Location(n) | Object(n)| Fact(n)| Entity n |\r\n| ----------------\
+    \ | ----------- | ----------- | ----------- |------------ |--------- |-------\
+    \ |--------- |\r\n| **Character A**  | —           |             |           \
+    \  |             |          |        |          |\r\n| **Character B**  |    \
+    \         | —           |             |             |          |        |    \
+    \      |\r\n| **Character C**  |             |             | —           |   \
+    \          |          |        |          |\r\n| **Location(n)**  |          \
+    \   |             |             | —           |          |        |          |\r\
+    \n| **Object  (n)**  |             |             |             |             |\
+    \ —        |        |          |\r\n| **Fact    (n)**  |             |       \
+    \      |             |             |          | —      |          |\r\n| **Entity\
+    \  (n)**  |             |             |             |             |          |\
+    \        | —        |\r\n\r\n\r\n## Update Log\r\n<!-- Track which scenes updated\
+    \ which relationships -->\r\n\r\n\r\n## Example Matrix\r\n\r\n| From ↓ / About\
+    \ → | Bilbo       | Frodo       | Gollum      | THE Ring    | Hobbiton | Bilbo\
+    \ Home| Destroy Ring|\r\n| ---------------- | ----------- | ----------- | -----------\
+    \ |------------ |--------- |---------- |------------ |\r\n| **Bilbo      **  |\
+    \ —           | gave ring to| out witted  |found        | is from  |  leaves \
+    \  |             |\r\n| ---------------- | ----------- | ----------- | -----------\
+    \ |------------ |--------- |---------- |------------ |\r\n| **Frodo      **  |\
+    \ is Heir of, | —           | saves       |             | is from  | inherits,\
+    \ | goal is     |\r\n|                  | loves       |             |        \
+    \     | lost        | not born | leaves    |             |\r\n| ----------------\
+    \ | ----------- | ----------- | ----------- |------------ |--------- |----------\
+    \ |------------ |\r\n| **Gollum     **  | hates,      | follows,    | —      \
+    \     | lost,       |          |           | would never |\r\n|              \
+    \    | follows     | guides to   |             | covests,    |          |    \
+    \       |             |\r\n|                  |             | Mordor      |  \
+    \           | calls \"my   |          |           |             |\r\n|       \
+    \           |             | Mordor      |             | precious\"   |       \
+    \   |           |             |\r\n| ---------------- | ----------- | -----------\
+    \ | ----------- |------------ |--------- |---------- |------------ |\r\n| **THE\
+    \ Ring   **  | makes invis |makes invis, | has power   | —           |       \
+    \   |           |             |\r\n|                  |             |hurting \
+    \     | over        |             |          |           |             |\r\n|\
+    \ ---------------- | ----------- | ----------- | ----------- |------------ |---------\
+    \ |---------- |------------ |\r\n| **Hobbiton   **  |             |          \
+    \   |             |             | —        |           |             |\r\n| ----------------\
+    \ | ----------- | ----------- | ----------- |------------ |--------- |----------\
+    \ |------------ |\r\n| **Bilbo Home **  |             |             |        \
+    \     |             | is in    | —         |             |\r\n| ----------------\
+    \ | ----------- | ----------- | ----------- |------------ |--------- |----------\
+    \ |------------ |\r\n| **Destroy Ring** |             | mission     |        \
+    \     |             |          |           | —           |\r\n|              \
+    \    |             | given to    |             |             |          |    \
+    \       | —           |\r\n| ---------------- | ----------- | ----------- | -----------\
+    \ |------------ |--------- |---------- |------------ |\r\n   "
+- path: canon\world\README.md
+  existed: true
+  content: "# World Module\r\n\r\nStore location, institutions, and physical rule\
+    \ references.\r\n"
+- path: .claude\skills\ai-filter-humanize\SKILL.md
+  existed: true
+  content: "---\r\nname: AI Filter Humanize\r\ndescription: Remove AI fingerprints\
+    \ and add human texture - specificity, imperfection, controlled unpredictability,\
+    \ and subtle sensory detail.\r\n---\r\n\r\n# AI Filter Humanize Skill\r\n\r\n\
+    Remove AI fingerprints and add human texture: specificity, imperfection, controlled\
+    \ unpredictability, and subtle sensory detail.\r\n\r\n## Usage\r\n```\r\n/project:skills:ai-filter-humanize\
+    \ {chapter_draft}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**:\
+    \ `chapter_draft`\r\n\r\n### Steps\r\n1. Remove generic phrases: \"in that moment\"\
+    , \"it seemed\", \"little did he know\", etc.\r\n2. Reduce symmetry and perfect\
+    \ logic in dialogue and actions.\r\n3. Add small human flaws: hesitation, misreading,\
+    \ irritation, awkward timing.\r\n4. Insert at most 3 vivid specific details that\
+    \ feel observed, not invented.\r\n5. Ensure one hard line per ~800-1200 words\
+    \ (punch line).\r\n\r\n## Output Format\r\n- Humanized chapter draft\r\n- List\
+    \ of removed AI tells\r\n\r\n## Quality Checks\r\n- No over-smoothing; keep edges.\r\
+    \n- Added details feel physically plausible.\r\n- [ ] Zero instances of forbidden\
+    \ words or phrases.\r\n\r\n## Forbidden Vocabulary\r\n\r\n### Words\r\ndelve,\
+    \ multifaceted, navigate, foster, embark, journey, landscape, testament, unwavering,\
+    \ intricate, beacon, realm, pivotal, nuance, crucial, indispensable, comprehensive,\
+    \ furthermore, consequently, hence, vital, commendable, meticulous, endeavor,\
+    \ profound, intriguing, leverage, facet, compelling, cohesive, streamline, enhance\r\
+    \n\r\n### Phrases\r\n\"little did * know\", \"as * continued\", \"in this moment\"\
+    , \"in this day and age\", \"a testament to\", \"it's important to note\", \"\
+    is not just *, it's\", \"the * tapestry of\", \"nestled in\", \"a symphony of\"\
+    , \"dance of\", \"serves as a\"\r\n"
+- path: .claude\skills\chapter-promise\SKILL.md
+  existed: true
+  content: "---\r\nname: Chapter Promise\r\ndescription: Define the chapter's narrative\
+    \ promise and deliverable change - what shifts, what question is raised, what\
+    \ tension escalates, and what payoff arrives.\r\n---\r\n\r\n# Chapter Promise\
+    \ Skill\r\n\r\nDefine the chapter's narrative promise and deliverable change:\
+    \ what shifts, what question is raised, what tension escalates, and what payoff\
+    \ arrives.\r\n\r\n## Usage\r\n```\r\n/project:skills:chapter-promise {story_promise}\
+    \ {story_context} {chapter_number}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\
+    \n- **Required**: `story_promise`, `story_context`, `chapter_number`\r\n- **Optional**:\
+    \ `pov_character`, `prior_chapter_summary`, `next_chapter_target`\r\n\r\n### Steps\r\
+    \n1. Identify the chapter's START state (emotional + situational).\r\n2. Identify\
+    \ the chapter's END state (what changed, what worsened, what new truth appears).\r\
+    \n3. Write the central dramatic question (CDQ) in one sentence.\r\n4. Define 2-3\
+    \ escalating pressures (social, physical, moral, informational).\r\n5. Define\
+    \ the payoff beat (reveal, reversal, decision, arrival, loss).\r\n6. Produce a\
+    \ one-paragraph chapter promise statement.\r\n\r\n## Output Format\r\n## Chapter\
+    \ Promise\r\n- Start State:\r\n- End State:\r\n- Central Dramatic Question:\r\n\
+    - Escalating Pressures:\r\n- Payoff Beat:\r\n- Promise Statement (1 paragraph):\r\
+    \n\r\n## Quality Checks\r\n- End state is meaningfully different from start state.\r\
+    \n- CDQ is answerable by the chapter end OR deliberately sharpened.\r\n- Pressures\
+    \ escalate (not repetitive).\r\n- End state moves story narrative forward sharpening\
+    \ the central question or conflict or stakes of the story_promise.\r\n"
+- path: .claude\skills\character-truth\SKILL.md
+  existed: true
+  content: "---\r\nname: Character Truth\r\ndescription: Ensure each major character's\
+    \ actions reflect their beliefs, fears, contradictions, and coping strategies.\r\
+    \n---\r\n\r\n# Character Truth Skill\r\n\r\nEnsure each major character's actions\
+    \ in the chapter reflect their beliefs, fears, contradictions, and coping strategies.\r\
+    \n\r\n## Usage\r\n```\r\n/project:skills:character-truth {chapter_draft} {character_list}\r\
+    \n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**: `chapter_draft`,\
+    \ `character_list`\r\n- **Optional**: `character_bible`\r\n\r\n### Steps\r\n1.\
+    \ For each major character, identify: desire, fear, lie they tell themselves,\
+    \ protection, weakness.\r\n2. Scan the chapter for any action/dialogue that contradicts\
+    \ the truth.\r\n3. Rewrite moments to restore psychological credibility.\r\n4.\
+    \ Add at least one moment where the character reveals truth indirectly (gesture,\
+    \ avoidance, impulse, mistake).\r\n\r\n## Output Format\r\n## Character Truth\
+    \ Audit\r\n- Character-by-character notes\r\n- Patched passages (before/after\
+    \ optional)\r\n\r\n## Quality Checks\r\n- No character behaves only to serve plot.\r\
+    \n- At least one contradiction is acknowledged or exploited.\r\n"
+- path: .claude\skills\continuity-callback\SKILL.md
+  existed: true
+  content: "---\r\nname: Continuity & Callback\r\ndescription: Validate continuity\
+    \ (facts, timeline, knowledge states) and add purposeful callbacks/foreshadowing\
+    \ consistent with the book bible.\r\n---\r\n\r\n# Continuity & Callback Skill\r\
+    \n\r\nValidate continuity (facts, timeline, knowledge states) and add purposeful\
+    \ callbacks/foreshadowing consistent with the book bible.\r\n\r\n## Usage\r\n\
+    ```\r\n/project:skills:continuity-callback {chapter_draft} {book_bible_or_notes}\r\
+    \n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**: `chapter_draft`,\
+    \ `book_bible_or_notes`, `scene_tracker`\r\n- **Optional**: `prior_chapters_summary`\r\
+    \n\r\n### Steps\r\n1. Verify timeline, injuries, weather, distances, and character\
+    \ knowledge.\r\n2. Flag contradictions or unclear cause-effect chains.\r\n3. Add\
+    \ 1-2 subtle callbacks to earlier motifs/objects.\r\n4. Add 1 foreshadow beat\
+    \ consistent with the chapter promise.\r\n5. Update scene_tracker with any knowledge/object/relationship\
+    \ changes from this chapter.\r\n\r\n## Output Format\r\n## Continuity Checks\r\
+    \n- Flags (must fix)\r\n- Suggested callbacks\r\n- Revised passage inserts\r\n\
+    \r\n## Quality Checks\r\n- No character knows what they haven't learned.\r\n-\
+    \ Foreshadowing is subtle and grounded, not prophecy-like.\r\n"
+- path: .claude\skills\dialogue-subtext\SKILL.md
+  existed: true
+  content: "---\r\nname: Dialogue Subtext\r\ndescription: Rewrite dialogue to carry\
+    \ power, misalignment, and subtext; reduce exposition and remove on-the-nose emotional\
+    \ labeling.\r\n---\r\n\r\n# Dialogue Subtext Skill\r\n\r\nRewrite dialogue to\
+    \ carry power, misalignment, and subtext; reduce exposition and remove 'on-the-nose'\
+    \ emotional labeling.\r\n\r\n## Usage\r\n```\r\n/project:skills:dialogue-subtext\
+    \ {chapter_draft}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**:\
+    \ `chapter_draft`\r\n\r\n### Steps\r\n1. Identify dialogue lines that state exactly\
+    \ what is meant.\r\n2. Replace direct statements with: deflection, control attempts,\
+    \ threat, bargaining, sarcasm, silence, mishearing.\r\n3. Ensure each dialogue\
+    \ exchange has an agenda imbalance.\r\n4. Add micro-interruptions (body movement,\
+    \ environment intrusion).\r\n\r\n## Output Format\r\n- Revised chapter draft (dialogue\
+    \ improved)\r\n- Dialogue notes (bullets)\r\n\r\n## Quality Checks\r\n- No conversation\
+    \ exists only to inform the reader.\r\n- At least one line per major exchange\
+    \ carries double meaning.\r\n"
+- path: .claude\skills\final-polish\SKILL.md
+  existed: true
+  content: "---\r\nname: Final Polish\r\ndescription: Final editorial pass for Watcher\
+    \ voice - strengthen openings/exits, tighten scene transitions, ensure pacing\
+    \ and tension are sharp.\r\n---\r\n\r\n# Final Polish Skill\r\n\r\nFinal editorial\
+    \ pass for Watcher voice: strengthen openings/exits, tighten scene transitions,\
+    \ ensure pacing and tension are sharp.\r\n\r\n## Usage\r\n```\r\n/project:skills:final-polish\
+    \ {chapter_draft}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**:\
+    \ `chapter_draft`\r\n- **Optional**: `voice_anchor` (default: \"watcher_voice_anchor\"\
+    )\r\n\r\n### Steps\r\n1. Strengthen the first paragraph: sensory hook + immediate\
+    \ stakes.\r\n2. Ensure every scene transition is motivated (cause -> next effect).\r\
+    \n3. Add or sharpen 1-2 'pressure lines' that punctuate dread.\r\n4. Remove any\
+    \ remaining exposition blocks.\r\n5. Ensure ending hook is sharp and unavoidable.\r\
+    \n\r\n## Output Format\r\n- Final polished chapter\r\n- Open/Close evaluation\
+    \ (bullets)\r\n\r\n## Quality Checks\r\n- Opening hooks within first 2-3 lines.\r\
+    \n- Ending creates forward pull.\r\n- No soft wrap-up unless intentionally bleak.\r\
+    \n"
+- path: .claude\skills\line-tightening\SKILL.md
+  existed: true
+  content: "---\r\nname: Line Tightening\r\ndescription: Compress prose 10-20% while\
+    \ preserving Watcher voice - remove redundancy, sharpen verbs, improve rhythm,\
+    \ and increase specificity.\r\n---\r\n\r\n# Line Tightening Skill\r\n\r\nCompress\
+    \ prose 10-20% while preserving Watcher voice: remove redundancy, sharpen verbs,\
+    \ improve rhythm, and increase specificity.\r\n\r\n## Usage\r\n```\r\n/project:skills:line-tightening\
+    \ {chapter_draft}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**:\
+    \ `chapter_draft`\r\n- **Optional**: `compression_target` (10|15|20)\r\n\r\n###\
+    \ Steps\r\n1. Remove redundant modifiers, repeated observations, filler transitions.\r\
+    \n2. Replace weak verbs with strong, specific verbs.\r\n3. Tighten sentence openings\
+    \ to reduce repetition.\r\n4. Maintain a rhythm mix: short pressure lines + occasional\
+    \ longer flow.\r\n\r\n## Output Format\r\n- Tightened chapter draft\r\n- Compression\
+    \ notes (bullets)\r\n\r\n## Quality Checks\r\n- Meaning is preserved; clarity\
+    \ improved.\r\n- No voice flattening into generic minimalism.\r\n"
+- path: .claude\skills\scene-architect\SKILL.md
+  existed: true
+  content: "---\r\nname: Scene Architect\r\ndescription: Convert chapter promise +\
+    \ tension map into structured scene cards with goal, obstacle, turn, cost, and\
+    \ exit hook.\r\n---\r\n\r\n# Scene Architect Skill\r\n\r\nConvert chapter promise\
+    \ + tension map into structured scene cards with goal, obstacle, turn, cost, and\
+    \ exit hook.\r\n\r\n## Usage\r\n```\r\n/project:skills:scene-architect {chapter_promise_output}\
+    \ {tension_map_output}\r\n```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**:\
+    \ `chapter_promise_output`, `tension_map_output`\r\n- **Optional**: `character_bible`,\
+    \ `setting_notes`\r\n\r\n### Steps\r\n1. Generate 3-7 scene cards.\r\n2. Each\
+    \ card includes: POV, location, time, goal, obstacle, tactic, turn, cost, exit\
+    \ emotion, next hook.\r\n3. Ensure each scene has a TURN that changes the situation.\r\
+    \n4. Ensure each scene ends with propulsion (not closure).\r\n\r\n## Output Format\r\
+    \n- scenes:\r\n  - id:\r\n    pov:\r\n    location:\r\n    time:\r\n    goal:\r\
+    \n    obstacle:\r\n    tactic:\r\n    # Five Commandments\r\n    inciting_incident:\r\
+    \n    progressive_complication:\r\n    crisis_type: best_bad_choice | irreconcilable_goods\r\
+    \n    crisis_question:\r\n    climax_action:\r\n    resolution:\r\n    value_shift:\
+    \ [from] -> [to]\r\n    # Original progression\r\n    turn:\r\n    cost:\r\n \
+    \   exit_emotion:\r\n    next_hook:\r\n\r\n## Quality Checks\r\n- Every scene\
+    \ has a goal and an obstacle.\r\n- Every scene has a turn and a cost.\r\n- No\
+    \ scene exists only to deliver exposition.\r\n"
+- path: .claude\skills\scene-draft\SKILL.md
+  existed: true
+  content: "---\r\nname: Scene Draft\r\ndescription: Draft a single scene in Watcher\
+    \ voice with clear beats, sensory grounding, conflict, turn, and a strong exit\
+    \ hook.\r\n---\r\n\r\n# Scene Draft Skill\r\n\r\nDraft a single scene in Watcher\
+    \ voice with clear beats, sensory grounding, conflict, turn, and a strong exit\
+    \ hook.\r\n\r\n## Usage\r\n```\r\n/project:skills:scene-draft {scene_card}\r\n\
+    ```\r\n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**: `scene_card`\r\n- **Optional**:\
+    \ `voice_anchor` (default: \"watcher_voice_anchor\"), `target_word_count`\r\n\r\
+    \n### Steps\r\n1. BEFORE DRAFTING: Load and verify against World Rules hard constraints.\r\
+    \n2. Start with sensory grounding + immediate stakes.\r\n3. Establish POV desire\
+    \ in the first 10% of scene.\r\n4. Escalate through proximity, power, or urgency.\r\
+    \n5. DURING DRAFTING: Enforce POV character's voice profile (sentence rhythm,\
+    \ vocabulary, what they notice).\r\n6. Insert micro-exposition only when triggered\
+    \ by action/object/memory.\r\n7. Execute the turn: reversal, discovery, decision,\
+    \ or interruption.\r\n8. End on propulsion: a threat, question, consequence, or\
+    \ uneasy relief.\r\n9. AFTER DRAFTING: Verify against anti-AI checklist.\r\n\r\
+    \n## Output Format\r\n- Drafted scene\r\n- Beat list (1 line each): entry / escalation\
+    \ / turn / exit\r\n\r\n## Quality Checks\r\n- [ ] No words from forbidden vocabulary\
+    \ list.\r\n- [ ] Sentence lengths vary (5-25 words, no patterns).\r\n- [ ] At\
+    \ least 2 non-visual sensory details present (sound, texture, light, temperature,\
+    \ smell).\r\n- [ ] No three consecutive sentences with same structure.\r\n- [\
+    \ ] Specific details, not generic descriptors.\r\n- [ ] Turn changes the state\
+    \ of the story.\r\n- [ ] Exit hook forces movement to next scene.\r\n"
+- path: .claude\skills\story-promise\SKILL.md
+  existed: true
+  content: "---\r\nname: Story Promise\r\ndescription: Define the story's narrative\
+    \ promise - the implicit contract made with readers about what kind of story this\
+    \ will be, what central question drives it, and what stakes will be resolved by\
+    \ the end.\r\n---\r\n\r\n# Story Promise Skill\r\n\r\nDefine the story's narrative\
+    \ promise: the implicit contract made with readers in the opening pages about\
+    \ what kind of story this will be, what central question drives it, and what stakes\
+    \ will be resolved by the end.\r\n\r\n## Usage\r\n```\r\n/project:skills:story-promise\
+    \ {story_concept} {genre} {opening_situation}\r\n```\r\n\r\n## Process\r\n\r\n\
+    ### Inputs\r\n- **Required**: `story_concept`, `genre`, `opening_situation`\r\n\
+    - **Optional**: `protagonist_name`, `inciting_incident`, `target_length`\r\n\r\
+    \n### Steps\r\n1. Identify what kind of story this is (genre, tone, emotional\
+    \ experience promised).\r\n2. Define the central question or conflict that will\
+    \ drive the narrative.\r\n3. Specify the stakes that must be resolved by story's\
+    \ end.\r\n4. Verify the promise can be established in the first 10-15% of the\
+    \ story.\r\n5. Produce a one-paragraph story promise statement.\r\n\r\n## Output\
+    \ Format\r\n## Story Promise\r\n- **Story Type (Genre/Tone/Experience):**\r\n\
+    - **Central Question or Conflict:**\r\n- **Stakes to be Resolved:**\r\n- **Promise\
+    \ Statement (1 paragraph):**\r\n\r\n### Reference Example: The Lord of the Rings\r\
+    \n**Promise Made:** Gandalf reveals Bilbo's ring is the One Ring of Sauron, and\
+    \ it must be destroyed in Mount Doom or Sauron will enslave all of Middle-earth.\
+    \ Promise: an epic quest to save the world by destroying ultimate power rather\
+    \ than wielding it.\r\n\r\n**Promise Fulfilled:** Frodo and Sam reach Mount Doom\
+    \ against impossible odds. Though Frodo fails at the final moment (claimed by\
+    \ the Ring), Gollum's intervention destroys it anyway. Sauron falls, the age of\
+    \ magic ends, and hobbits return home changed. The eucatastrophic ending delivers\
+    \ on both the quest's success and the bittersweet cost.\r\n\r\n## Quality Checks\r\
+    \n- Story type matches actual content and establishes clear expectations.\r\n\
+    - Central question is compelling and specific (not generic).\r\n- Stakes are clear,\
+    \ meaningful, and will drive reader investment.\r\n- Promise can be credibly kept\
+    \ by the story's planned ending.\r\n- Opening pages (first 10-15%) will clearly\
+    \ communicate this promise.\r\n\r\n## Usage Notes\r\n- The promise must be kept.\
+    \ Readers feel cheated if the opening teaches them to expect one kind of story\
+    \ but delivers another.\r\n- Examples: Thriller with ticking bomb → promises tension\
+    \ and race against time; Mystery with murdered body → promises killer will be\
+    \ revealed.\r\n"
+- path: .claude\skills\tension-curve\SKILL.md
+  existed: true
+  content: "---\r\nname: Tension Curve\r\ndescription: Map the micro-tension beats\
+    \ within a chapter to ensure escalation, release, and sustained dread or anticipation.\r\
+    \n---\r\n\r\n# Tension Curve Skill\r\n\r\nMap the micro-tension beats within a\
+    \ chapter to ensure escalation, release, and sustained dread or anticipation.\r\
+    \n\r\n## Usage\r\n```\r\n/project:skills:tension-curve {chapter_promise}\r\n```\r\
+    \n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**: `chapter_promise`\r\n- **Optional**:\
+    \ `beats_per_chapter` (default: 5)\r\n\r\n### Steps\r\n1. Plot entries: where\
+    \ does the pressure start?\r\n2. Plot complications: what increases the social/physical/moral\
+    \ stakes?\r\n3. Identify the Peak (the highest tension point).\r\n4. Identify\
+    \ the Twist/Cost: what is lost at the peak?\r\n5. Plot the Exit: where does the\
+    \ tension settle (usually higher than it started)?\r\n6. Generate a visualization\
+    \ map (markdown table or list).\r\n\r\n## Output Format\r\n- Tension Map Table:\
+    \ [Beat | Tension Level (1-10) | Description]\r\n- Peak Tension description\r\n\
+    - Twist/Cost description\r\n\r\n## Quality Checks\r\n- Tension does not plateau\
+    \ for more than two beats.\r\n- The Peak occurs in the final 30% of the chapter.\r\
+    \n- Pacing reflects the genre rhythm (e.g., sharp jumps for thriller).\r\n"
+- path: .claude\skills\voice-anchor\SKILL.md
+  existed: true
+  content: "---\r\nname: Voice Anchor\r\ndescription: Anchor prose & voice with grounded\
+    \ cinematic realism, tight tension, emotionally restrained characters, vivid but\
+    \ controlled imagery, and exposition embedded through action and sensory detail.\r\
+    \n---\r\n\r\n# Voice Anchor Skill\r\n\r\nAnchor prose & voice: grounded cinematic\
+    \ realism, tight tension, emotionally restrained characters, vivid but controlled\
+    \ imagery, and exposition embedded through action and sensory detail.\r\n\r\n\
+    ## Usage\r\n```\r\n/project:skills:voice-anchor {text_to_write_or_edit}\r\n```\r\
+    \n\r\n## Process\r\n\r\n### Inputs\r\n- **Required**: `text_to_write_or_edit`\r\
+    \n- **Optional**: `pov_character`, `voice_profile_file`, `tense` (default: \"\
+    past\"), `target_length` (default: \"1-2 pages not counting dialogue\"), `tone_intensity`\
+    \ (low|medium|high), `taboo_list` (default: \"cliches, sexual innuendo, gratuitous\
+    \ profanities, never curse using God or Jesus or Christ\"), `voice_samples`\r\n\
+    \r\n### Steps\r\n1. Enforce narrative distance: close-third with occasional widened\
+    \ lens; never float.\r\n2. Open with sensory setting or immediate tension; quickly\
+    \ get to inciting incident; do not begin with abstract reflection.\r\n3. Use concrete\
+    \ imagery with one surprising metaphor max per paragraph (e.g., 'rain like static').\r\
+    \n4. Keep sentences mostly lean, mixing short pressure lines with occasional longer\
+    \ flow.\r\n5. Embed backstory in micro-flashes, physical reactions like flinching,\
+    \ forced laugh, touching a scar, reacting to phantom physical pain - triggered\
+    \ by action, objects, memories, places).\r\n6. Maintain emotional restraint: characters\
+    \ rarely label emotions; show through body and choice.\r\n7. Dialogue stays functional,\
+    \ sharp, and sometimes antagonistic/hostile, curious, empathetic, caring depending\
+    \ on character relationships, greatest fear or desire and fitting the situation;\
+    \ avoid witty banter unless earned.\r\n8. Escalation should occur through small\
+    \ conflicts, small humiliations, increased stakes, and sudden physical reversals.\r\
+    \n9. Avoid generic \"AI narrator\" descriptions, dialogue, and transitions: no\
+    \ \"As they continued...\" / \"Little did he know...\"\r\n\r\n## Output Format\r\
+    \n- Voice compliance checklist (bullets)\r\n\r\n## Quality Checks\r\n- Every paragraph\
+    \ contains at least one concrete sensory/physical detail.\r\n- No overt emotional\
+    \ labeling unless the POV character would self-label.\r\n- Backstory appears as\
+    \ brief, sharp insertions; never as a block.\r\n- At least one or two sentences\
+    \ per page are punchy and standalone (pressure line).\r\n- Dialogue reflects power\
+    \ dynamics, character inner emotions rooted in character traits; subtext present\
+    \ when stakes are high.\r\n\r\n### Style Contract (Do)\r\n- Start scenes with\
+    \ inciting incident + immediate stakes (emotional, relational or physical tied\
+    \ to characters' greatest desire or weakness or fear). Or get to those quickly.\r\
+    \n- Write rising tension through social threat, physical proximity, revelation\
+    \ of character's long kept secret that makes them vulnerable.\r\n- Use specific\
+    \ objects (packs, tarps, plastic bags, N95) to ground realism.\r\n- Let exposition\
+    \ hide in actions, emotions, memories, setting, significant objects.\r\n\r\n###\
+    \ Style Contract (Don't)\r\n- No lyrical overdescription; no purple prose.\r\n\
+    - No meta commentary about storytelling.\r\n- No perfectly logical dialogue; allow\
+    \ jaggedness.\r\n- No convenient coincidences without cost.\r\n"
+- path: CLAUDE.md
+  existed: true
+  content: '# Fiction Writing Skills System - Project Guide
+
+
+    ## Repository Overview
+
+    This repository contains the Fiction Writing Skills System, a Claude Code skill
+    set for producing research-informed, high-quality fiction.
+
+
+    ## Core Principles
+
+    1. **Story Grid Alignment**: Every scene must follow the Five Commandments and
+    have a clear value shift.
+
+    2. **Character Voice**: All prose is filtered through a character-specific Voice
+    Profile.
+
+    3. **Anti-AI Prose**: Strict enforcement of forbidden vocabulary and human-like
+    sentence variation.
+
+    4. **World Consistency**: Hard constraints and scene tracking prevent continuity
+    errors.
+
+
+    ## Key Directories
+
+    - `templates/`: Foundational templates for Bible, Characters, World, and Tracking.
+
+    - `bible/`: Active story reference documents (Bible, World Rules, Scene Tracker).
+
+    - `characters/`: Detailed character profiles with Voice Profiles.
+
+    - `.claude/commands/skills/`: Individual skill definitions.
+
+
+    ## Primary Commands
+
+    - `/project:pipeline-run {scene_path}`: Orchestrate the full 3-stage pipeline.
+
+    - `/project:skills:voice-anchor`: Set or verify the narrative voice.
+
+    - `/project:skills:scene-architect`: Plan scenes with Story Grid structure.
+
+    - `/project:skills:scene-draft`: Generate prose with voice/rule enforcement.
+
+
+    ## Foundation Setup
+
+    Before drafting, ensure these are populated:
+
+    1. `bible/story-bible.md` (from `templates/story-bible.template.md`)
+
+    2. `bible/world-rules.md` (from `templates/world-rules.template.md`)
+
+    3. `bible/scene-tracker.md` (from `templates/scene-tracker.template.md`)
+
+    4. `characters/{name}.md` (from `templates/character-profile.template.md`)
+
+
+    ## Writing Checklist
+
+    - [ ] POV character''s internal voice matches their profile
+
+    - [ ] No forbidden vocabulary (delve, multifaceted, etc.)
+
+    - [ ] At least 2 non-visual sensory details per scene
+
+    - [ ] Scene has a Crisis (Best Bad Choice or Irreconcilable Goods)
+
+    - [ ] Value shift is achieved and logical
+
+    '
